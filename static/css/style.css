@@ -8,6 +8,11 @@ a:hover {
 	text-decoration: underline;
 }
 
+img{
+	max-width: 100%;
+	margin-top: 12px;
+	border: 2px solid gray;
+}
 
 @font-face {
 	font-family: "Source HansSans";
@@ -108,13 +113,6 @@ blockquote {
 	border-left: 0.25em solid #d0d7de;
 }
 
-/* 图片 */
-article img{
-	max-width: 100%;
-	margin-top: 12px;
-
-	border: 2px solid gray;
-}
 
 
 /* 单行的`` 渲染 */
