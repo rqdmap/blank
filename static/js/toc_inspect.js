@@ -2,10 +2,7 @@
 
 	const selector =  ['h2', 'h3', 'h4']
 
-
-	var content = document.querySelector('article');
-	if(content == null)
-		content = document.querySelector('list')
+	var content = document.querySelector('article, .list');
 	if(content == null)
 		return
 
@@ -36,10 +33,13 @@
 			}
 		}
 
-		if(now == null) now = all_toc[0];
+		if(now == null)
+			return
+
+		if(toc.getElementsByTagName('a').length == 0)
+			return 
 
 		for(let i of toc.getElementsByTagName('a')){
-			console.log(i.text, now.innerText);
 			if(i.text == now.innerText){
 				i.classList.add('active');
 			}

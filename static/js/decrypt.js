@@ -73,4 +73,4 @@ addLoadEvent(function() {
             elements[index].innerHTML = decrypted;
         }
     }
-})();
+});
