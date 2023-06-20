@@ -11,10 +11,19 @@
 	{{ with .OutputFormats.Get "RSS" -}}
 		{{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
 	{{- end }}
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
 </head>
 <body>
-	{{ partial "header" . }}
-	{{ block "main" . }}{{ end }}
-	{{ partial "footer" . }}
+	{{ partial "sidebar" . }}
+	<div class='content-container'>
+		{{ block "main" . }}{{ end }}
+	</div>
+	<div class='rightbar-container'>
+		{{ partial "toc.html" . }}
+	</div>
+	{{ partial "scripts.html" . }}
 </body>
 </html>

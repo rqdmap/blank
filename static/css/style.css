@@ -1,0 +1,249 @@
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+a:hover {
+	font-weight: 600;
+	text-decoration: underline;
+}
+
+
+@font-face {
+	font-family: "Source HansSans";
+	src: local('Source Han Sans CN'), url('/fonts/SourceHanSansCN-Medium.ttf');
+}
+
+
+@font-face {
+	font-family: "Iosevka Font";
+    src: local('Iosevka Nerd Font'), url('/fonts/Iosevka-Nerd-Font-Complete.woff2');
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+
+	font-size: 16px;
+	font-family: "Iosevka Font", "Source HansSans", TZhongsong, STSong, "Noto Serif CJK", "Noto Serif SC", PMingLiu, SimSun, "WenQuanYi Bitmap Song", "Times New Roman", Times, serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/* ------------*/
+/* 左侧侧边栏 */
+/* ------------*/
+.sidebar {
+	position: fixed;
+    top: 40px;
+
+    height: 90%;
+    width: 25%;
+
+    text-align: right;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-title {
+	padding-right: 40px;
+
+	font-family: 'Bungee Shade';
+	font-weight: 600;
+	font-size: 2rem;
+}
+
+.sidebar-title a {
+	text-decoration: none;
+}
+
+.sidebar-items {
+	padding-top: 40px;
+	padding-right: 40px;
+
+	font-size: 1.2rem;
+	line-height: 3rem;
+}
+
+.sidebar-footer{
+	position: absolute;
+	right: 0;
+	bottom: 40px;
+	padding-right: 40px;
+	font-size: 0.8rem;
+}
+
+
+/* -----*/
+/* 正文 */
+/* -----*/
+.content-container {
+	/* height: 100%; */
+	margin-left: 25%;
+	margin-right: 25%;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+}
+
+
+main{
+	padding: 30px;
+}
+
+article a {
+	text-decoration: underline;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+
+/* 引用 */
+blockquote {
+	margin: 0;
+	padding: 0 1em;
+	color: #57606a;
+	border-left: 0.25em solid #d0d7de;
+}
+
+/* 图片 */
+article img{
+	max-width: 100%;
+	margin-top: 12px;
+
+	border: 2px solid gray;
+}
+
+
+/* 单行的`` 渲染 */
+code {
+	padding: 0.2em 0.4em;
+	font-size: 85%;
+	background-color: #f6f8fa;
+	border-radius: 3px;
+}
+
+/* 多行的```渲染 */
+.highlight{
+	position: relative;
+}
+
+.highlight pre {
+	padding: 16px;
+	overflow: auto;
+	border-radius: 4px;
+}
+
+.highlight pre::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background-color: transparent;
+}
+
+.highlight pre > code{
+	padding: 0;
+	font-size: 100%;
+	background-color: inherit;
+	border: 0;
+}
+
+/* 代码块复制按钮 */
+.code-copy {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 10px;
+	padding: 5px 10px;
+	opacity: 1;
+}
+
+
+/* -----------*/
+/* 右侧侧边栏 */
+/* -----------*/
+.rightbar-container {
+	position: fixed;
+	top: 40px;
+	right: 0;
+
+	width: 25%;
+	height: 70%;
+	overflow: auto;
+}
+
+.rightbar-container::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background-color: transparent;
+}
+
+.toc{
+	margin-left: 40px;
+	width: 80%;
+	max-width: 350px; overflow-wrap: anywhere;
+	padding-bottom: 10px;
+	padding-left: 20px;
+
+	box-sizing: border-box;
+	border-radius: 7px;
+	background-color: #f2f2f2;
+}
+
+
+.toc-title{
+	text-align: center;
+	padding-top: 10px;
+
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.toc-h2,
+.toc-h3,
+.toc-h4{
+	padding-left: 20px;
+}
+
+li > a.active {
+	font-weight: 600;
+	text-decoration: underline;
+}
+
+/********/
+/* 摘要 */
+/********/
+
+.summary > h1 {
+	font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+}
+
+article > time,
+.summary > time{
+	color: #343A40;
+}
+
+article > a,
+.summary > a {
+	margin-left: 7px;
+}
+
+.summary-content{
+	padding: 20px 0px;
+}
+
+.summary-content > a{
+	text-decoration: underline;
+	font-weight: 600;
+}
+
+.summary-hr {
+	/* ... */
+}
+
+
+
+

@@ -1,14 +1,23 @@
-<aside>
-	<div>
-		<div>
-			<h3>LATEST POSTS</h3>
-		</div>
-		<div>
-			<ul>
-				{{ range first 5 (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
-				<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-				{{ end }}
-			</ul>
-		</div>
+<div class="sidebar">
+	<div class='sidebar-title'>
+		<a href='/'> {{ .Site.Author.name }} </a>
 	</div>
-</aside>
+
+	<div class="sidebar-items">
+		{{ range .Site.Params.socials }}
+		<div class="sidebar-item">
+			<a href="{{ .link }}">{{ .name }}</a>
+		</div>
+		{{ end }}
+	</div>
+
+	<div class="sidebar-footer">
+		<div id='total-views'></div>
+		This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" style="text-decoration: underline">CC BY-NC-ND 4.0</a>.
+		<br>
+		<div>
+			Powered by <a href="https://gohugo.io" style="text-decoration:underline">Hugo</a> | Theme <a href="https://github.com/rqdmap/blank" style="text-decoration:underline">blank</a> (modified)
+		</div>
+		Copyright &copy; 2020-{{ now.Year }} rqdmap
+	</div>
+</div>

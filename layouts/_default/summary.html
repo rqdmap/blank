@@ -1,13 +1,21 @@
-<article>
+<div class='summary'>
 	<h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-	<time datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">{{ .Date.Format "02.01.2006 15:04" }}</time>
-	{{ range .Params.tags }}
-	<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+	<time datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">{{ .Date.Format "2006.01.02 15:04" }}</time>
+
+	{{ range .Params.categories }}
+	<a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
 	{{ end }}
-	<div>
-		{{ .Summary }}
+
+	{{ range .Params.tags }}
+	<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
+	{{ end }}
+
+	<div class='summary-content'>
+		{{ plainify .Summary }}
 		{{ if .Truncated }}
-			<a href="{{ .Permalink }}">Read more...</a>
+			...
 		{{ end }}
 	</div>
-</article>
+
+	<hr class='summary-hr'>
+</div>

@@ -7,6 +7,7 @@ demosite = "https://blank-demo.netlify.app/"
 tags = ["blog", "plain", "blank", "starter", "development"]
 features = ["blog"]
 min_version = "0.20"
+summaryLength = 10
 
 [author]
   name = "Vimux"
