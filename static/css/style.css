@@ -10,8 +10,7 @@ a {
 	text-decoration: none;
 }
 
-a:hover {
-	font-weight: 600;
+a:hover { font-weight: 600;
 	text-decoration: underline;
 }
 
@@ -291,6 +290,22 @@ article > time,
 	/* ... */
 }
 
+
+/* ******** */
+/* 加密提示 */
+/* ******** */
+.hugo-encryptor-form{
+	text-align: center;
+}
+
+.hugo-encryptor-button,
+.hugo-encryptor-input{
+	font-size: 20px;
+	margin: 10px 10px 10px 10px;
+	text-align: center;
+	border: 2px solid #000;
+	width: 200px;
+}
 
 
 
