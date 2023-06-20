@@ -170,22 +170,24 @@ code {
 /* git 修改记录 */
 .git{
 	margin-top: 50px;
-	font-family: "Source Han Sans My", serif;
-    font-size: 1.17em;
+    font-size: 1.5em;
+
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
-	background-color: #A4FFC0;
+	/* background-color: #A4FFC0; */
 }
 
-.gitLog{ }
+.gitLog{
+	/*...*/
+}
 
 .gitLine{
-	margin-top: 15px;
 	margin-bottom: 15px;
 	display: flex;
+	flex-direction: row;
 }
 
 .gitTime{
