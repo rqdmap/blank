@@ -4,6 +4,8 @@
 
 
 	const content = document.querySelector('article');
+	if(content == null)
+		return
 
 	const all_toc = content.querySelectorAll(selector.join());
 	const toc = document.querySelector('.toc');

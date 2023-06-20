@@ -62,8 +62,8 @@
 	}
 
 	function query(){
-		var views = document.getElementsById("post-views")[0];
-		var totalViews = document.getElementsById("total-views")[0];
+		var views = document.getElementById("page-views");
+		var totalViews = document.getElementById("total-views");
 
 		var request = new XMLHttpRequest();
 		var pageID	= encodeURIComponent(getPageID());
@@ -79,8 +79,8 @@
 				if(res == null){
 					res = [-1,-1];
 				}
-				if(views != null) views.innerText += res[0].trim();
-				totalViews.append(" | Total views: " + res[1].trim());
+				if(views != null) views.innerText += " " + res[0].trim();
+				totalViews.append("Total views: " + res[1].trim());
 
 				hit();
 			}
