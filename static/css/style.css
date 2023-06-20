@@ -14,6 +14,16 @@ img{
 	border: 2px solid gray;
 }
 
+/* 图片模糊 */
+.blur-image {
+  filter: blur(5px);
+}
+
+.blur-image:hover {
+  filter: none;
+}
+
+
 @font-face {
 	font-family: "Source HansSans";
 	src: local('Source Han Sans CN'), url('/fonts/SourceHanSansCN-Medium.ttf');
@@ -157,6 +167,36 @@ code {
 	opacity: 1;
 }
 
+/* git 修改记录 */
+.git{
+	margin-top: 50px;
+	font-family: "Source Han Sans My", serif;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+	background-color: #A4FFC0;
+}
+
+.gitLog{ }
+
+.gitLine{
+	margin-top: 15px;
+	margin-bottom: 15px;
+	display: flex;
+}
+
+.gitTime{
+	float: left;
+	width: 30%;
+}
+
+.gitMsg{
+	float: right;
+	width: 70%;
+}
 
 /* -----------*/
 /* 右侧侧边栏 */
@@ -241,6 +281,8 @@ article > a,
 .summary-hr {
 	/* ... */
 }
+
+
 
 
 
