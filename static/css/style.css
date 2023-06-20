@@ -4,15 +4,21 @@ a {
 	text-decoration: underline;
 }
 
+.summary  a,
+.sidebar-title a,
+.sidebar-items a {
+	text-decoration: none;
+}
+
 a:hover {
 	font-weight: 600;
 	text-decoration: underline;
 }
 
-.summary  a,
-.sidebar-title a {
+.sidebar-title a:hover {
 	text-decoration: none;
 }
+
 
 article > a,
 .summary > a {
