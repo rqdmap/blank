@@ -48,6 +48,8 @@ const _click_handler = function (element) {
     parent.innerHTML = decrypted;
 }
 
+
+
 addLoadEvent(function() {
     let index = -1;
     let elements = document.querySelectorAll(
@@ -71,4 +73,4 @@ addLoadEvent(function() {
             elements[index].innerHTML = decrypted;
         }
     }
-});
+})();
