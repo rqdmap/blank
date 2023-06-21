@@ -87,6 +87,8 @@ body {
 
 
 .sidebar-items {
+	display: none;
+	flex-direction: column;
 	padding-top: 40px;
 	padding-right: 40px;
 
@@ -335,6 +337,7 @@ article > time,
 	.sidebar-title {
 		text-align: center;
 		font-size: 2.5rem;
+		padding: 0;
 	}
 	
 	.sidebar-footer {
@@ -342,22 +345,21 @@ article > time,
 	}
 	
 	.sidebar-items {
-		display: flex;
+		display: none;
 		flex-direction: row;
 		flex-wrap: wrap;
-		line-height: 1.3rem;
+		line-height: 1rem;
+		padding-right: 0;
 	}
 
 	.sidebar-item {
-		
 		text-align: center;
-		
 		border-left: 0.15em solid;
-		padding: 0 0.8em;
+		padding: 0 0.5em;
 	}
 
 	.sidebar-item:last-child{
-		padding-right: 0.9em;
+		padding-right: 0.4em;
 		border-right: 0.15em solid;
 	}
 	
@@ -371,8 +373,3 @@ article > time,
 		display: none;
 	}
 }
-
-
-
-
-
