@@ -294,6 +294,11 @@ article > time,
 /* ******** */
 /* 加密提示 */
 /* ******** */
+
+.hugo-encryptor-container{
+	background-color: lightgreen;
+}
+
 .hugo-encryptor-form{
 	text-align: center;
 }

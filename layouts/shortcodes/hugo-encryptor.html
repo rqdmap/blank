@@ -1,0 +1,38 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{/*
+    ## Hugo Encrypt
+    ### Params:
+    - `password`：
+
+        require param
+    - Simple
+
+        {{% hugo-encryptor "your password" %}}
+your content
+{{% /hugo-encryptor %}}
+
+*/}}
+{{/* DEFAULTS */}}
+
+<div class="hugo-encryptor-container">
+  <div class="hugo-encryptor-form">
+    <input
+      class="hugo-encryptor-input"
+      placeholder='Input something?..'
+    />
+    <input
+      class="hugo-encryptor-button"
+      type="button"
+      value='Crack!'
+      onclick="_click_handler(this)"
+    />
+  </div>
+  <div
+    class="hugo-encryptor-cipher-text"
+    data-password="{{ .Get 0 }}"
+    style="display: none;"
+  >
+    <span style="display: none;">--- DON'T MODIFY THIS LINE ---</span>
+    {{ .Inner }}
+  </div>
+</div>
