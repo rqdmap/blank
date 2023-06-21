@@ -296,7 +296,9 @@ article > time,
 /* ******** */
 
 .hugo-encryptor-container{
-	background-color: lightgreen;
+	margin: 30px 0px;
+    border-top: 0.25em solid darkseagreen;
+    border-bottom: 0.25em solid darkseagreen;
 }
 
 .hugo-encryptor-form{
