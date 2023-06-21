@@ -95,6 +95,10 @@ body {
 	line-height: 3rem;
 }
 
+.sidebar-item {
+	white-space: nowrap;
+}
+
 .sidebar-footer{
 	position: absolute;
 	right: 0;
@@ -314,7 +318,55 @@ article > time,
 	width: 200px;
 }
 
+/* ******** */
+/* 手机屏幕 */
+/* ******** */
 
+
+@media screen and (max-width: 900px) {
+
+	.sidebar{
+		position: static;
+		height: 10%;
+		width: 100%;
+		display: flex;
+		justify-content: center; 
+		align-items: center; 
+	}
+	
+	.sidebar-title {
+		text-align: center;
+		font-size: 2.5rem;
+	}
+	
+	.sidebar-footer {
+		display: none
+	}
+	
+	.sidebar-items {
+		display: flex;
+		flex-direction: row;
+		line-height: 1.3rem;
+		font-size: 1rem
+	}
+
+	.sidebar-item {
+		text-align: center;
+		
+		border-left: 0.15em solid;
+		margin-left: 0.4em;
+		padding: 0 0.2em;
+	}
+	.content-container {
+		margin-left: 0%;
+		margin-right: 0%;
+		box-shadow: 0px 0px 0px;
+	}
+
+	.rightbar-container {
+		display: none;
+	}
+}
 
 
 
