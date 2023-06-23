@@ -45,6 +45,10 @@
 
 	function hit(){
 		var pageID	= encodeURIComponent(getPageID());
+
+		if(pageID.length == 0)
+			return;
+
 		var browser = encodeURIComponent(getBrowser());
 		var lang	= encodeURIComponent(getBrowserLanguage());
 		var plat	= encodeURIComponent(getPlatform());
@@ -61,26 +65,60 @@
 		}
 	}
 
+	function checkDigit(s){
+		var res = true;
+		for(var i = 0; i < s.length; i++){
+			if(s[i] == ' ') continue;
+			if(s[i] < '0' || s[i] > '9'){
+				res = false;
+				break;
+			}
+		}
+		return res;
+	}
+
+	var totalViews = document.getElementById("total-views");
+	var views = document.getElementById("page-views");
+
+
+
+	function setViews(total, page){
+			totalViews.append("Total views: " + total);
+			if(views != null && page != null)
+				views.innerText += " " + page;
+	}
+
 	function query(){
-		var views = document.getElementById("page-views");
-		var totalViews = document.getElementById("total-views");
-
 		var request = new XMLHttpRequest();
-		var pageID	= encodeURIComponent(getPageID());
-
-		request.open('GET', 'https://api.rqdmap.top/hitcount?id=' + pageID, true);
+		if(views != null){
+			var pageID	= encodeURIComponent(getPageID());
+			request.open('GET', 'https://api.rqdmap.top/hitcount?id=' + pageID, true);
+		}
+		else{
+			request.open('GET', 'https://api.rqdmap.top/hitcount', true);
+		}
 		request.send();
 
 		request.onreadystatechange = function() {
-			if (request.readyState == 4 &&
-				(request.status == 200 || request.status == 304)) {
-				res = request.responseText.split(' ');
-
-				if(res == null){
-					res = [-1,-1];
+			if (request.readyState == 4 && (request.status == 200 || request.status == 304)) {
+				var res = request.responseText;
+				if (checkDigit(res) == false){
+					console.log("Hit Count API error: " + res)
+					setViews("Err", "Err")
+					return
 				}
-				if(views != null) views.innerText += " " + res[0].trim();
-				totalViews.append("Total views: " + res[1].trim());
+
+				res = res.split(' ');
+				if(res.length != 2 && res.length != 1){
+					console.log("Hit Count API error: " + res)
+					setViews("Err", "Err")
+					return
+				}
+
+				if(res.length == 1)
+					setViews(res[0].trim(), null)
+				else
+					setViews(res[1].trim(), res[0].trim())
 
 				hit();
 			}
