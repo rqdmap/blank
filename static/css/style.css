@@ -9,7 +9,8 @@ a {
 	text-decoration: none;
 }
 
-a:hover { font-weight: 600;
+a:hover {
+	font-weight: 600;
 	text-decoration: underline;
 }
 
@@ -87,7 +88,7 @@ body {
 
 
 .sidebar-items {
-	display: none;
+	display: flex;
 	flex-direction: column;
 	padding-top: 40px;
 	padding-right: 40px;
@@ -98,6 +99,9 @@ body {
 
 .sidebar-item {
 	white-space: nowrap;
+}
+
+.dropdown-items { display: none;
 }
 
 .sidebar-footer{
@@ -330,7 +334,6 @@ article > time,
 /* 手机屏幕 */
 /* ******** */
 
-
 @media screen and (max-width: 900px) {
 
 	.sidebar{
@@ -346,31 +349,56 @@ article > time,
 		text-align: center;
 		font-size: 2.5rem;
 		padding: 0;
+		padding-top: 10px;
 	}
 	
+	.sidebar-items,
 	.sidebar-footer {
 		display: none
 	}
-	
-	.sidebar-items {
+
+	.dropdown-items {
+		display: block;
+	}
+
+	.dropdown-btn{
+		position: absolute;
+		top: 20px;
+		left: 20px;
+
+		padding: 10px;
+		background-color: #f2f2f2;
+		border-radius: 8px;
+		border: 0px;
+  }
+
+
+	.dropdown-list {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 75%; /* 列表宽度 */
+		margin: 0;
+		padding: 0;
+		background-color: #f1f1f1;
+
 		display: none;
-		flex-direction: row;
-		flex-wrap: wrap;
-		line-height: 1rem;
-		padding-right: 0;
-	}
-
-	.sidebar-item {
+		flex-direction: column;
 		text-align: center;
-		border-left: 0.15em solid;
-		padding: 0 0.5em;
 	}
 
-	.sidebar-item:last-child{
-		padding-right: 0.4em;
-		border-right: 0.15em solid;
+	.dropdown-items:hover .dropdown-list {
+		display: flex;
 	}
-	
+
+
+	.dropdown-item a{
+		text-decoration: none;
+		font-size: 1.2rem;
+		line-height: 3;
+	}
+
 	.content-container {
 		margin-left: 0%;
 		margin-right: 0%;

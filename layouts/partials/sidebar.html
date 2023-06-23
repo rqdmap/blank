@@ -11,6 +11,24 @@
 		{{ end }}
 	</div>
 
+	<div class="dropdown-items">
+		<button class='dropdown-btn'>
+			<svg viewBox="0 0 16 16" width="16" height="16">
+				<path
+					d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z">
+				</path>
+			</svg>
+		</button>
+
+		<div class="dropdown-list">
+		{{ range .Site.Params.socials }}
+			<div class="dropdown-item">
+				<a href="{{ .link }}">{{ .name }}</a>
+			</div>
+		{{ end }}
+		</div>
+	</div>
+
 	<div class="sidebar-footer">
 		<div id='total-views'></div>
 		Licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" style="text-decoration: underline">CC BY-NC-ND 4.0</a>
