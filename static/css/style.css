@@ -386,6 +386,8 @@ article > time,
 		display: none;
 		flex-direction: column;
 		text-align: center;
+		border: 1px solid black;
+		border-radius: 10px;
 	}
 
 	.dropdown-items:hover .dropdown-list {
