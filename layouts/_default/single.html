@@ -12,10 +12,14 @@
 			<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
 			{{ end }}
 
-			<a href="/statistics" id='page-views'>
-				󰐠  
-			</a>
 
+			{{ if .Params.rate }}
+				{{ range .Params.rate }}
+				<a href="{{ "/rate/" | relURL}}{{ . | urlize }}"> 󰅺 {{ . }} </a>
+				{{ end }}
+			{{ end }}
+
+			<a href="/statistics" id='page-views'> 󰈈  </a>
 
 			<div>
 				{{ .Content }}

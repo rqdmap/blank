@@ -8,6 +8,32 @@
 			</div>
 			{{ end }}
 
+			{{ if eq .Type "anime" }}
+				<!-- 读取/rate下的所有内容, 在该页面渲染显示 -->
+				<script>
+					let tagArray = new Array();
+					{{ with .Site.GetPage "/rate" }}
+						{{ range $key, $value := .Data.Terms }}
+								tagArray.push([{{ $key }}, {{ len $value }} ]);
+						{{ end }}
+					{{ end }} 
+				</script>
+				<script src="{{"/js/wordcloud2.js" | relURL}}"></script>
+				<div id="tag-wrapper"></div>
+				<script>
+					var tagcloud = document.querySelector("#tag-wrapper")
+					tagcloud.style.width = "100%"
+					var height = tagArray.length * 2 + 15;
+					tagcloud.style.height = height.toString() + "px";
+					WordCloud(tagcloud, {
+							list: tagArray,
+							classes: "rate-cloud-item",
+							weightFactor: 25,
+							shape: "square",
+							shrinkToFit: true
+					});
+				</script>
+			{{ end }}
 
 			{{ if eq .Kind "taxonomy" }} 
 				<script>
@@ -16,30 +42,19 @@
 							tagArray.push([{{ $key }}, {{ len $value }} ]);
 					{{ end }}
 				</script>
-
 				<script src="{{"/js/wordcloud2.js" | relURL}}"></script>
-
 				<div id="tag-wrapper"></div>
 				<script>
 					var tagcloud = document.querySelector("#tag-wrapper")
 					tagcloud.style.width = "100%"
 					var height = tagArray.length * 2 + 15;
 					tagcloud.style.height = height.toString() + "px";
-
-
 					WordCloud(tagcloud, {
 							list: tagArray,
-							classes: "tag-cloud-item",
+							classes: "normal-cloud-item",
 							weightFactor: 10,
 							shape: "square",
 							shrinkToFit: true
-					});
-
-					document.querySelector("#tag-wrapper").addEventListener('wordcloudstop', function (e) {
-						document.querySelectorAll('.tag-cloud-item').forEach(function (element) {
-								const word = element.innerHTML;
-								element.innerHTML = `<a href="${word}/" style="color: inherit; text-decoration: none">${word}</a>`;
-						});
 					});
 				</script>
 

@@ -10,6 +10,12 @@
 	<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
 	{{ end }}
 
+	{{ if .Params.rate }}
+		{{ range .Params.rate }}
+		<a href="{{ "/rate/" | relURL}}{{ . | urlize }}"> 󰅺 {{ . }} </a>
+		{{ end }}
+	{{ end }}
+
 	<div class='summary-content'>
 		{{ plainify .Summary }}
 		{{ if .Truncated }}
