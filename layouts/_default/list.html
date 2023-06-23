@@ -8,10 +8,49 @@
 			</div>
 			{{ end }}
 
-			{{ range .Paginator.Pages }}
-				{{ .Render "summary" }}
+
+			{{ if eq .Kind "taxonomy" }} 
+				<script>
+					let tagArray = new Array();
+					{{ range $key, $value := .Data.Terms }}
+							tagArray.push([{{ $key }}, {{ len $value }} ]);
+					{{ end }}
+				</script>
+
+				<script src="{{"/js/wordcloud2.js" | relURL}}"></script>
+
+				<div id="tag-wrapper"></div>
+				<script>
+					var tagcloud = document.querySelector("#tag-wrapper")
+					tagcloud.style.width = "100%"
+					var height = tagArray.length * 2 + 15;
+					tagcloud.style.height = height.toString() + "px";
+
+
+					WordCloud(tagcloud, {
+							list: tagArray,
+							classes: "tag-cloud-item",
+							weightFactor: 10,
+							shape: "square",
+							shrinkToFit: true
+					});
+
+					document.querySelector("#tag-wrapper").addEventListener('wordcloudstop', function (e) {
+						document.querySelectorAll('.tag-cloud-item').forEach(function (element) {
+								const word = element.innerHTML;
+								element.innerHTML = `<a href="${word}/" style="color: inherit; text-decoration: none">${word}</a>`;
+						});
+					});
+				</script>
+
+			{{ else }}
+				{{ range .Pages }}
+					{{ .Render "summary" }}
+				{{ end }}
+				{{ if eq .Kind "section" }}
+					{{ partial "changelog" . }}
+				{{ end }}
 			{{ end }}
 		</div>
-		{{ partial "changelog" . }}
 	</main>
 {{ end }}

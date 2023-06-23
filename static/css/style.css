@@ -319,6 +319,13 @@ article > time,
 	width: 200px;
 }
 
+/* ******* */
+/* 标签云 */
+/* ******* */
+#tag-wrapper{
+	margin: 0 auto;
+}
+
 /* ******** */
 /* 手机屏幕 */
 /* ******** */
@@ -374,3 +381,5 @@ article > time,
 		display: none;
 	}
 }
+
+
