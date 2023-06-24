@@ -66,6 +66,22 @@
 					{{ partial "changelog" . }}
 				{{ end }}
 			{{ end }}
+
+			<script>
+			var elem = document.querySelector("#tag-wrapper")
+			if(elem) elem.addEventListener('wordcloudstop', function (e) {
+				document.querySelectorAll('.normal-cloud-item').forEach(function (element) {
+						const word = element.innerHTML;
+						element.innerHTML = `<a href="${word}/" style="color: inherit; text-decoration: none">${word}</a>`;
+				});
+
+				document.querySelectorAll('.rate-cloud-item').forEach(function (element) {
+						const word = element.innerHTML;
+						element.innerHTML = `<a href=/rate/${word}/ style="color: inherit; text-decoration: none">${word}</a>`;
+				});
+			});
+			</script>
+
 		</div>
 	</main>
 {{ end }}

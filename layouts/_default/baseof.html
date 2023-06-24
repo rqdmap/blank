@@ -17,6 +17,15 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="{{ "css/katex.min.css" | relURL }}">
+	<script src="{{ "js/katex/katex.min.js" | relURL }}"></script>
+	<script defer src="{{ "js/katex/auto-render.min.js" | relURL }}"
+		onload='renderMathInElement(document.body, {delimiters: [
+			{left: "$$", right: "$$", display: true},
+			{left: "$", right: "$", display: false}
+]});'>
+	</script>
 </head>
 <body>
 	{{ partial "sidebar" . }}
