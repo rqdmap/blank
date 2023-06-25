@@ -12,6 +12,9 @@
 			<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
 			{{ end }}
 
+			{{ range .Params.anime_tags }}
+			<a href="{{ "/anime_tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
+			{{ end }}
 
 			{{ if .Params.rate }}
 				{{ range .Params.rate }}

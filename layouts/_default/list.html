@@ -9,14 +9,19 @@
 			{{ end }}
 
 			{{ if eq .Type "anime" }}
-				<!-- 读取/rate下的所有内容, 在该页面渲染显示 -->
+				<!-- 读取/rate以及/anime_tags下的所有内容, 在该页面渲染显示 -->
 				<script>
 					let tagArray = new Array();
 					{{ with .Site.GetPage "/rate" }}
 						{{ range $key, $value := .Data.Terms }}
 								tagArray.push([{{ $key }}, {{ len $value }} ]);
 						{{ end }}
-					{{ end }} 
+					{{ end }}
+					{{ with .Site.GetPage "/anime_tags" }}
+						{{ range $key, $value := .Data.Terms }}
+								tagArray.push([{{ $key }}, {{ len $value }} ]);
+						{{ end }}
+					{{ end }}
 				</script>
 				<script src="{{"/js/wordcloud2.js" | relURL}}"></script>
 				<div id="tag-wrapper"></div>
