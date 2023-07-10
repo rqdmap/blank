@@ -1,0 +1,30 @@
+{{ $raw_slice := split .Inner "\n" }}
+
+<!-- Remove empty lines -->
+{{ $slice := slice }}
+{{- range $raw_slice -}}
+	{{ if gt (len .) 0 }}
+	{{ $slice = $slice | append . }}
+	{{ end }}
+{{ end }}
+
+{{ if ge (len $slice) 1 }}
+<div class="error-block msg-block">
+
+<div class="error-title msg-title">
+{{ index $slice 0 }}
+</div>
+
+{{ if ge (len $slice) 2 }}
+<div class="msg-body">
+{{ range (last (sub (len $slice) 1) $slice) }}
+{{ . }}
+{{ end }}
+</div>
+{{ end }}
+
+</div>
+
+{{ end }}
+
+

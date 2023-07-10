@@ -143,6 +143,48 @@ blockquote {
 }
 
 
+/* ********** */
+/* 特殊注解块 */
+/* ********** */
+.msg-block {
+	margin: 1.5rem 0;
+	/* padding-bottom: 0.1rem; */
+	border-radius: 3px;
+	box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+}
+
+.msg-title {
+	padding-left: 1rem;
+	line-height: 2rem;
+}
+
+.msg-body {
+	padding-left: 1rem;
+	font-size: 0.9rem;
+	padding-bottom: 0.1rem;
+}
+
+.info-block {
+	border-left: 0.25em solid rgba(57, 197, 187, 1);
+}
+.info-title {
+	background-color: rgba(57, 197, 187, 0.2);
+}
+
+.warn-block {
+	border-left: 0.25em solid rgba(242, 190, 34, 1);
+}
+.warn-title {
+ 	background-color: rgba(242, 190, 34, 0.2);
+}
+
+.error-block {
+	border-left: 0.25em solid rgba(232, 69, 69, 1);
+}
+.error-title {
+	background-color: rgba(232, 69, 69, 0.2);
+}
+
 /* 单行的`` 渲染 */
 code {
 	padding: 0.2em 0.4em;
