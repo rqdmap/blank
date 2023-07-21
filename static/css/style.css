@@ -39,16 +39,14 @@ img{
   filter: none;
 }
 
+/* @font-face { */
+/* 	font-family: "Iosevka Nerd Font"; */
+/* 	src: url('/fonts/iosevka-nerd-font.min.ttf123'); */
+/* } */
 
 @font-face {
-	font-family: "Source HansSans";
-	src: local('Source Han Sans CN'), url('/fonts/SourceHanSansCN-Medium.ttf');
-}
-
-
-@font-face {
-	font-family: "Iosevka Font";
-    src: local('Iosevka Nerd Font'), url('/fonts/Iosevka-Nerd-Font-Complete.woff2');
+	font-family: "Sarasa";
+    src: url('/fonts/SarasaTermSCNerdFont-Regular.woff2');
 }
 
 body {
@@ -59,7 +57,7 @@ body {
 	flex-direction: column;
 
 	font-size: 16px;
-	font-family: "Iosevka Font", "Source HansSans", TZhongsong, STSong, "Noto Serif CJK", "Noto Serif SC", PMingLiu, SimSun, "WenQuanYi Bitmap Song", "Times New Roman", Times, serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-family: "Sarasa";
 }
 
 /* ------------*/
