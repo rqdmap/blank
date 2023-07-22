@@ -1,9 +1,7 @@
 {{ define "main" }}
 	<main>
-		{{ range (where .Site.RegularPages "Section" "in" site.Params.mainSections).GroupByDate "2006" -}}
-			{{ range .Pages }}
+		{{ range (where .Site.RegularPages "Section" "in" site.Params.mainSections).ByDate.Reverse -}}
 				{{ .Render "summary" }}
-			{{ end }}
 		{{ end }}
 	</main>
 {{ end }}

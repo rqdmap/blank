@@ -221,9 +221,28 @@ code {
 	top: 0;
 	right: 0;
 	margin: 10px;
-	padding: 5px 10px;
+	padding: 5px 6px;
 	opacity: 1;
 }
+
+.code-toggle {
+	position: absolute;
+	top: 0px;
+	right: 40px;
+	margin: 10px;
+	padding: 5px 6px;
+	opacity: 1;
+}
+
+.code-folded{
+	height: 25px;
+	overflow: hidden;
+}
+
+.code-notice {
+	text-align: center;
+}
+
 
 /* git 修改记录 */
 .git{

@@ -1,0 +1,20 @@
+<time datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">{{ .Date.Format "2006.01.02 15:04" }}</time>
+
+{{ range .Params.categories }}
+<a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
+{{ end }}
+
+{{ range .Params.tags }}
+<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
+{{ end }}
+
+{{ range .Params.anime_tags }}
+<a href="{{ "/anime_tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
+{{ end }}
+
+{{ if .Params.rate }}
+	{{ range .Params.rate }}
+	<a href="{{ "/rate/" | relURL}}{{ . | urlize }}"> 󰅺 {{ . }} </a>
+	{{ end }}
+{{ end }}
+

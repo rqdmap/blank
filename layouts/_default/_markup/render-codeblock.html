@@ -1,0 +1,8 @@
+<!-- {{ .Type }} -->
+{{ if eq true (index .Attributes "fold") }}
+<div class="__flag__">
+{{ else }}
+<div>
+{{ end }} 
+{{ transform.Highlight .Inner .Type .Options }}
+</div>
