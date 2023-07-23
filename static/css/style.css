@@ -49,6 +49,10 @@ img{
     src: url('/fonts/SarasaTermSCNerdFont-Regular.woff2');
 }
 
+* {
+	font-family: "Sarasa";
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -57,7 +61,6 @@ body {
 	flex-direction: column;
 
 	font-size: 16px;
-	font-family: "Sarasa";
 }
 
 /* ------------*/
@@ -78,12 +81,13 @@ body {
 
 .sidebar-title {
 	padding-right: 40px;
+}
 
+.sidebar-title > a {
 	font-family: 'Bungee Shade';
 	font-weight: 600;
 	font-size: 2rem;
 }
-
 
 .sidebar-items {
 	display: flex;
@@ -99,7 +103,8 @@ body {
 	white-space: nowrap;
 }
 
-.dropdown-items { display: none;
+.dropdown-items {
+	display: none;
 }
 
 .sidebar-footer{
@@ -322,6 +327,11 @@ code {
 .toc-h3,
 .toc-h4{
 	padding-left: 20px;
+}
+
+li > a{
+	font-weight: 400;
+	text-decoration: none;
 }
 
 li > a.active {

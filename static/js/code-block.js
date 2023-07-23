@@ -81,20 +81,3 @@ addCopyButtons()
 
 })()
 
-
-// // 代码块折叠
-// (function(){
-// 	document.querySelectorAll(".code-toggle").forEach((toggleBtn) => {
-// 		var code = (toggleBtn.nextElementSibling)
-// 		toggleBtn.addEventListener('click', function() {
-// 			if(code.classList.contains('highlight-folded')) {
-// 				code.classList.remove('highlight-folded');
-// 				toggleBtn.innerHTML = ' ';
-// 			}
-// 			else {
-// 				code.classList.add('highlight-folded');
-// 				toggleBtn.innerHTML = ' ';
-// 			}
-// 		});
-// 	});
-// }());
