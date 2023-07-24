@@ -12,13 +12,13 @@
 <div class="error-block msg-block">
 
 <div class="error-title msg-title">
-{{ index $slice 0 }}
+{{ safeHTML (index $slice 0) }}
 </div>
 
 {{ if ge (len $slice) 2 }}
 <div class="msg-body">
 {{ range (last (sub (len $slice) 1) $slice) }}
-{{ . }}
+{{ safeHTML . }}
 {{ end }}
 </div>
 {{ end }}
