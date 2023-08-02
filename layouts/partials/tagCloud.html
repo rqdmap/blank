@@ -1,0 +1,54 @@
+<!--	传入参数:																-->
+<!-- 		- TargetPage: 目标页面, 以空格分隔 		-->
+<!-- 		- weightFactor: 字体大小							-->
+<!-- 	前提:																		-->
+<!-- 		- 一个页面至多拥有一个词云 						-->
+
+{{ $Target := .Scratch.Get "TargetPage" }}
+{{ $weightFactor := .Scratch.Get "weightFactor" }}
+{{ $Target = split $Target " " }}
+<script>
+let tagArray = new Array();
+{{ range $pageURL := $Target }}
+	{{ $page := site.GetPage $pageURL }}
+
+	{{ range $k, $v := $page.Data.Terms }}
+		tagArray.push([{{ $k }}, {{ len $v }}, {{ $pageURL }}]);
+	{{ end }}
+{{ end }}
+</script>
+<script src="{{"/js/wordcloud2.js" | relURL}}"></script>
+<div id="tag-wrapper"></div>
+<script>
+	var tagcloud = document.querySelector("#tag-wrapper")
+	tagcloud.style.width = "100%"
+	var height = tagArray.length * 2 + 15;
+	tagcloud.style.height = height.toString() + "px";
+	WordCloud(tagcloud, {
+			list: tagArray,
+			classes: "cloud-item",
+			weightFactor: {{ $weightFactor }},
+			shape: "square",
+			shrinkToFit: true
+	});
+
+	var elem = document.querySelector("#tag-wrapper")
+	if(elem) elem.addEventListener('wordcloudstop', function (e) {
+		document.querySelectorAll('.cloud-item').forEach(function (element) {
+				let preURL = null;
+				const word = element.innerHTML;
+				for(let i = 0; i < tagArray.length; i++) {
+					if(tagArray[i][0] == word) {
+						preURL = tagArray[i][2];
+						break;
+					}
+				}
+				if(preURL == null){
+					console.log("Error: Cannot find the URL of " + word);
+					return;
+				};
+				element.innerHTML = `<a href="${preURL}/${word}/" style="color: inherit; text-decoration: none">${word}</a>`;
+		});
+	})
+</script>
+

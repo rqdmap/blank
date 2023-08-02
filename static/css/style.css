@@ -104,6 +104,10 @@ body {
 	white-space: nowrap;
 }
 
+.sidebar-item > a:hover{
+	text-decoration: none;
+}
+
 .dropdown-items {
 	display: none;
 }
@@ -114,6 +118,13 @@ body {
 	bottom: 40px;
 	padding-right: 40px;
 	font-size: 0.8rem;
+}
+
+.en_name,
+.zh_name {
+	width: 75px;
+	display: inline-block;
+	text-align: center;
 }
 
 

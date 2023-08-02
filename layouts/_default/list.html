@@ -8,85 +8,38 @@
 			</div>
 			{{ end }}
 
+			<!-- 漫评词云-->
 			{{ if eq .Type "anime" }}
-				<!-- 读取/rate以及/anime_tags下的所有内容, 在该页面渲染显示 -->
-				<script>
-					let tagArray = new Array();
-					{{ with .Site.GetPage "/rate" }}
-						{{ range $key, $value := .Data.Terms }}
-								tagArray.push([{{ $key }}, {{ len $value }} ]);
-						{{ end }}
-					{{ end }}
-					{{ with .Site.GetPage "/anime_tags" }}
-						{{ range $key, $value := .Data.Terms }}
-								tagArray.push([{{ $key }}, {{ len $value }} ]);
-						{{ end }}
-					{{ end }}
-				</script>
-				<script src="{{"/js/wordcloud2.js" | relURL}}"></script>
-				<div id="tag-wrapper"></div>
-				<script>
-					var tagcloud = document.querySelector("#tag-wrapper")
-					tagcloud.style.width = "100%"
-					var height = tagArray.length * 2 + 15;
-					tagcloud.style.height = height.toString() + "px";
-					WordCloud(tagcloud, {
-							list: tagArray,
-							classes: "rate-cloud-item",
-							weightFactor: 25,
-							shape: "square",
-							shrinkToFit: true
-					});
-				</script>
+			{{ .Scratch.Set "TargetPage" "/rate /anime_tags" }}
+			{{ .Scratch.Set "weightFactor" "25" }}
+			{{ partial "tagCloud" . }}
 			{{ end }}
 
-			{{ if eq .Kind "taxonomy" }} 
-				<script>
-					let tagArray = new Array();
-					{{ range $key, $value := .Data.Terms }}
-							tagArray.push([{{ $key }}, {{ len $value }} ]);
-					{{ end }}
-				</script>
-				<script src="{{"/js/wordcloud2.js" | relURL}}"></script>
-				<div id="tag-wrapper"></div>
-				<script>
-					var tagcloud = document.querySelector("#tag-wrapper")
-					tagcloud.style.width = "100%"
-					var height = tagArray.length * 2 + 15;
-					tagcloud.style.height = height.toString() + "px";
-					WordCloud(tagcloud, {
-							list: tagArray,
-							classes: "normal-cloud-item",
-							weightFactor: 10,
-							shape: "square",
-							shrinkToFit: true
-					});
-				</script>
+			<!-- 分类词云-->
+			{{ if eq .Type "categories" }}
+			{{ .Scratch.Set "TargetPage" "/categories" }}
+			{{ .Scratch.Set "weightFactor" "10" }}
+			{{ partial "tagCloud" . }}
+			{{ end }}
 
-			{{ else }}
+			<!-- 标签词云-->
+			{{ if eq .Type "tags" }}
+			{{ .Scratch.Set "TargetPage" "/tags" }}
+			{{ .Scratch.Set "weightFactor" "10" }}
+			{{ partial "tagCloud" . }}
+			{{ end }}
+
+			<!-- Taxonomy类型不显示具体的摘要列表-->
+			{{ if ne .Kind "taxonomy" }} 
 				{{ range .Pages }}
 					{{ .Render "summary" }}
 				{{ end }}
-				{{ if eq .Kind "section" }}
-					{{ partial "changelog" . }}
-				{{ end }}
 			{{ end }}
 
-			<script>
-			var elem = document.querySelector("#tag-wrapper")
-			if(elem) elem.addEventListener('wordcloudstop', function (e) {
-				document.querySelectorAll('.normal-cloud-item').forEach(function (element) {
-						const word = element.innerHTML;
-						element.innerHTML = `<a href="${word}/" style="color: inherit; text-decoration: none">${word}</a>`;
-				});
-
-				document.querySelectorAll('.rate-cloud-item').forEach(function (element) {
-						const word = element.innerHTML;
-						element.innerHTML = `<a href=/rate/${word}/ style="color: inherit; text-decoration: none">${word}</a>`;
-				});
-			});
-			</script>
-
+			<!-- 只有Section类型才启用更新日志-->
+			{{ if eq .Kind "section" }} 
+				{{ partial "changelog" . }}
+			{{ end }}
 		</div>
 	</main>
 {{ end }}
