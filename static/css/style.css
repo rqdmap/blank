@@ -5,7 +5,8 @@ a {
 
 .summary  a,
 .sidebar-title a,
-.sidebar-items a {
+.sidebar-items a,
+.toc a {
 	text-decoration: none;
 }
 
@@ -14,12 +15,12 @@ a:hover {
 	text-decoration: underline;
 }
 
-.sidebar-title a:hover {
+.sidebar-title a:hover,
+.sidebar-item > a:hover {
 	text-decoration: none;
 }
 
-
-article > a,
+article a,
 .summary > a {
 	margin-left: 7px;
 }
@@ -102,10 +103,6 @@ body {
 
 .sidebar-item {
 	white-space: nowrap;
-}
-
-.sidebar-item > a:hover{
-	text-decoration: none;
 }
 
 .dropdown-items {
@@ -358,16 +355,6 @@ th, td {
 .toc-h3,
 .toc-h4{
 	padding-left: 20px;
-}
-
-li > a{
-	font-weight: 400;
-	text-decoration: none;
-}
-
-li > a.active {
-	font-weight: 600;
-	text-decoration: underline;
 }
 
 /********/
