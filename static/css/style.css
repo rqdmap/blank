@@ -352,6 +352,11 @@ th, td {
 	padding-left: 20px;
 }
 
+.toc .active {
+	font-weight: 600;
+	text-decoration: underline;
+}
+
 /********/
 /* 摘要 */
 /********/
