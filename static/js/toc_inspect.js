@@ -6,10 +6,9 @@
 	if(content == null)
 		return
 
-
 	const all_toc = content.querySelectorAll(selector.join());
 	const toc = document.querySelector('.toc');
-
+	const container = toc.parentNode;
 
 	const throttle = function(func, wait){
 		let timeoutId;
@@ -25,7 +24,7 @@
 	}
 
 	const scrollHandler = function(){
-		var now = null;
+		var now = all_toc[0];
 		for (var i = all_toc.length - 1; i >= 0; i--){
 			if(all_toc[i].offsetTop <= window.scrollY + 5){
 				now = all_toc[i];
@@ -41,6 +40,9 @@
 
 		for(let i of toc.getElementsByTagName('a')){
 			if(i.text == now.innerText){
+				// console.log(toc.parentNode.offsetTop)
+				container.scrollTop = i.offsetTop - container.clientHeight / 2;
+				// toc.parentNode.scrollTop = i.offsetTop - toc.parentNode.offsetTop - 30;
 				i.classList.add('active');
 			}
 			else{
@@ -49,6 +51,7 @@
 		}
 	}
 
-	window.addEventListener('scroll', throttle(scrollHandler, 500));
+	// window.addEventListener('scroll', throttle(scrollHandler, 500));
+	window.addEventListener('scroll', scrollHandler);
 
 })()
