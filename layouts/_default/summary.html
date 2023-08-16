@@ -4,9 +4,11 @@
 	{{ partial "front-matter" . }}
 
 	<div class='summary-content'>
+		<a href="{{ .Permalink }}">
 		{{ plainify .Summary }}
 		{{ if .Truncated }}
 			...
 		{{ end }}
+		</a>
 	</div>
 </div>

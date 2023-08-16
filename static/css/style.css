@@ -378,13 +378,9 @@ article > time,
 	overflow: auto;
 }
 
-.summary-content > a{
-	text-decoration: underline;
-	font-weight: 600;
-}
-
-.summary-hr {
-	/* ... */
+.summary-content > a:hover{
+	/* text-decoration: underline; */
+	font-weight: normal;
 }
 
 
