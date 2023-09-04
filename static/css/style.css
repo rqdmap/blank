@@ -419,7 +419,6 @@ article > time,
 /* ******** */
 
 @media screen and (max-width: 900px) {
-
 	.sidebar{
 		position: static;
 		height: 10%;
@@ -475,9 +474,9 @@ article > time,
 		z-index: 999999;
 	}
 
-	.dropdown-items:hover .dropdown-list {
-		display: flex;
-	}
+	/* .dropdown-items:hover .dropdown-list { */
+	/* 	display: flex; */
+	/* } */
 
 
 	.dropdown-item a{
