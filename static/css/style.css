@@ -69,15 +69,15 @@ body {
 /* ------------*/
 .sidebar {
 	position: fixed;
-    top: 40px;
+	top: 40px;
 
-    height: 90%;
-    width: 25%;
+	height: 90%;
+	width: 25%;
 
-    text-align: right;
+	text-align: right;
 
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .sidebar-title {
@@ -139,11 +139,9 @@ main{
 	padding: 30px;
 }
 
-
 h1 {
 	font-size: 2em;
 }
-
 
 /* 引用 */
 blockquote {
@@ -363,8 +361,8 @@ th, td {
 
 .summary > h1 {
 	font-size: 1.5em;
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
+  margin-block-start: 0.83em;
+	margin-block-end: 0.83em;
 }
 
 article > time,

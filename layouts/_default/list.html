@@ -3,7 +3,10 @@
 		<div class='list'>
 			{{ if or .Title .Content }}
 			<div>
-				{{ with .Title }}<h1>{{ . }}</h1>{{ end }}
+				<div style='display: flex; align-items: center; justify-content: space-between'>
+					{{ with .Title }}<h1 style='display:inline-block;'>{{ . }}</h1>{{ end }}
+					{{ if eq .Kind "section" }} <a href="/statistics" id='page-views' style='margin-right: 25px'> 󰈈  </a> {{ end }}
+				</div>
 				{{ with .Content }}<div>{{ . }}</div>{{ end }}
 			</div>
 			{{ end }}
