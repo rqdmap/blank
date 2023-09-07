@@ -11,3 +11,12 @@ var addLoadEvent = (func) => {
 	}
 }
 
+var onModifyHtml = () => {};
+var addActionOnModifyHtml = (func) => {
+	var oldfunc = onModifyHtml;
+	onModifyHtml = function() {
+		oldfunc();
+		func();
+	}
+}
+	

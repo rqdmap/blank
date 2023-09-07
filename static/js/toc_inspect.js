@@ -1,5 +1,4 @@
-(function(){
-
+var toc_inspect = function(){
 	const selector =  ['h2', 'h3', 'h4']
 
 	var content = document.querySelector('article, .list');
@@ -53,5 +52,8 @@
 
 	// window.addEventListener('scroll', throttle(scrollHandler, 500));
 	window.addEventListener('scroll', scrollHandler);
+}
 
-})()
+toc_inspect()
+addActionOnModifyHtml(toc_inspect)
+

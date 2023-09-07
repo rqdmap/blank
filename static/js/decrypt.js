@@ -46,6 +46,7 @@ const _click_handler = function (element) {
     let key = location.pathname + ".password." + index;
     storage.setItem(key, password);
     parent.innerHTML = decrypted;
+		onModifyHtml();
 }
 
 
@@ -62,8 +63,8 @@ addLoadEvent(function() {
         let password = localStorage.getItem(key);
 
         if (!password) {
+						onModifyHtml();
             break;
-
         } else {
             console.log("Found password for part " + index);
 
