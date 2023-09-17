@@ -39,9 +39,7 @@ var toc_inspect = function(){
 
 		for(let i of toc.getElementsByTagName('a')){
 			if(i.text == now.innerText){
-				// console.log(toc.parentNode.offsetTop)
 				container.scrollTop = i.offsetTop - container.clientHeight / 2;
-				// toc.parentNode.scrollTop = i.offsetTop - toc.parentNode.offsetTop - 30;
 				i.classList.add('active');
 			}
 			else{
@@ -50,7 +48,6 @@ var toc_inspect = function(){
 		}
 	}
 
-	// window.addEventListener('scroll', throttle(scrollHandler, 500));
 	window.addEventListener('scroll', scrollHandler);
 }
 

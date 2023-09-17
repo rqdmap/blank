@@ -20,10 +20,6 @@ a:hover {
 	text-decoration: none;
 }
 
-.front-a {
-	margin-left: 7px;
-}
-
 object,
 img{
 	max-width: 100%;
@@ -141,6 +137,8 @@ main{
 
 h1 {
 	font-size: 2em;
+ /*  margin-block-start: 0.4em; */
+	/* margin-block-end: 0.4em; */
 }
 
 /* 引用 */
@@ -359,17 +357,21 @@ th, td {
 /* 摘要 */
 /********/
 
+.front-matter {
+	line-height: 1.7rem;
+}
+
+.front-item {
+	margin-right: 15px;
+	white-space: nowrap;
+}
+
+
 .summary > h1 {
 	font-size: 1.5em;
-  margin-block-start: 0.83em;
-	margin-block-end: 0.83em;
+ /*  margin-block-start: 0.83em; */
+	/* margin-block-end: 0.83em; */
 }
-
-article > time,
-.summary > time{
-	color: #343A40;
-}
-
 
 .summary-content{
 	padding: 20px 0px;
@@ -410,6 +412,15 @@ article > time,
 /* ******* */
 #tag-wrapper{
 	margin: 0 auto;
+}
+
+/* ******** */
+/* 访客统计 */
+/* ******** */
+#page-views {
+	margin-right: 25px;
+	margin-left: 25px;
+	white-space: nowrap;
 }
 
 /* ******** */
