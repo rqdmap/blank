@@ -1,13 +1,13 @@
 {{ if in (slice "section" "home") .Kind }}
 <div class="sort-containner">
-	<button class="sort-btn" onclick="toggle_sort_items()">
+	<button class="sort-btn" onmousedown="toggle_sort_items()" onblur="close_sort_items()">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="IconChangeColor" height="25" width="25"> <g> <path fill="none" d="M0 0H24V24H0z" id="mainIconPathAttribute"></path> <path d="M20 4v12h3l-4 5-4-5h3V4h2zm-8 14v2H3v-2h9zm2-7v2H3v-2h11zm0-7v2H3V4h11z" id="mainIconPathAttribute"></path> </g> </svg>
 	</button>
 
 	<div class='sort-items'>
-		<div onclick="set_sort_url('0')">创建时间		</div>
-		<div onclick="set_sort_url('1')">修改时间		</div>
-		<div onclick="set_sort_url('2')">字数					</div>
+		<div onmousedown="set_sort_url('0')">创建时间		</div>
+		<div onmousedown="set_sort_url('1')">修改时间		</div>
+		<div onmousedown="set_sort_url('2')">字数					</div>
 	</div>
 
 	<script>
