@@ -1,22 +1,22 @@
 <div class='front-matter'>
-	<time class='front-item' datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">  {{ .Date.Format "2006.01.02 15:04" }}</time>
-	<time class='front-item' datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">  {{ .Lastmod.Format "2006.01.02 15:04" }}</time>
+	<time class='front-item front-matter-create-time' datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">  {{ .Date.Format "2006.01.02 15:04" }}</time>
+	<time class='front-item front-matter-lastmod-time' datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">  {{ .Lastmod.Format "2006.01.02 15:04" }}</time>
 
 	{{ range .Params.categories }}
-	<a class='front-item' href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
+	<a class='front-item front-matter-categories' href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
 	{{ end }}
 
 	{{ range .Params.tags }}
-	<a class='front-item' href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
+	<a class='front-item front-matter-tags' href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
 	{{ end }}
 
 	{{ range .Params.anime_tags }}
-	<a class='front-item' href="{{ "/anime_tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
+	<a class='front-item front-matter-anime-tags' href="{{ "/anime_tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
 	{{ end }}
 
 	{{ range .Params.rate }}
-	<a class='front-item' href="{{ "/rate/" | relURL}}{{ . | urlize }}"> 󰅺 {{ . }}</a>
+	<a class='front-item front-matter-rate' href="{{ "/rate/" | relURL}}{{ . | urlize }}"> 󰅺 {{ . }}</a>
 	{{ end }}
 
-	<span class='front-item'> 󰈭  {{ countwords .Content }} words </span>
+	<span class='front-item front-matter-wordcount'> 󰈭  {{ countwords .Content }}字 </span>
 </div>

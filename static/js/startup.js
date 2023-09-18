@@ -11,4 +11,17 @@
 			list.style.display = 'none';
 		}
 	});
+
+	dropdownBtn.addEventListener('blur', function(){
+			list.style.display = 'none';
+	})
+})()
+
+
+addLoadEvent(function() {
+	var params = new URLSearchParams(window.location.search);
+	var sortParam = params.get('sort');
+	if (sortParam != null) {
+		sort_items(sortParam);
+	}
 })()

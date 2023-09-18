@@ -1,0 +1,96 @@
+{{ if in (slice "section" "home") .Kind }}
+<div class="sort-containner">
+	<button class="sort-btn" onclick="toggle_sort_items()">
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="IconChangeColor" height="25" width="25"> <g> <path fill="none" d="M0 0H24V24H0z" id="mainIconPathAttribute"></path> <path d="M20 4v12h3l-4 5-4-5h3V4h2zm-8 14v2H3v-2h9zm2-7v2H3v-2h11zm0-7v2H3V4h11z" id="mainIconPathAttribute"></path> </g> </svg>
+	</button>
+
+	<div class='sort-items'>
+		<div onclick="set_sort_url('0')">创建时间		</div>
+		<div onclick="set_sort_url('1')">修改时间		</div>
+		<div onclick="set_sort_url('2')">字数					</div>
+	</div>
+
+	<script>
+		function toggle_sort_items() {
+			var sortItems = document.querySelector('.sort-items');
+			if (sortItems.style.display == 'block') {
+				sortItems.style.display = 'none';
+			} else {
+				sortItems.style.display = 'block';
+			}
+		}
+		function close_sort_items() {
+			var sortItems = document.querySelector('.sort-items');
+			sortItems.style.display = 'none';
+		}
+
+		function set_sort_url(key_idx) {
+			var params = new URLSearchParams(window.location.search);
+			params.set('sort', key_idx);
+			var newUrl = window.location.pathname + '?' + params.toString();
+			window.location.href = newUrl;
+		}
+
+		var sort_items = function(key_idx) {
+			const keys = ["front-matter-create-time", "front-matter-lastmod-time", "front-matter-wordcount"];
+			const check_home = function () {
+				var elem = document.querySelector("main") 
+				for(var i = 0; i < elem.children.length; i++) {
+					var child = elem.children[i];
+					if (child.nodeType === 1 && child.tagName.toLowerCase() === 'div') {
+						if (!child.classList.contains("summary")) {
+							return false;
+						}
+					}
+				}
+				return true
+			}
+			
+			let cmp_order = [key_idx];
+			for(var i = 0; i < keys.length; i++) {
+				if(i != key_idx) { cmp_order.push(i); }
+			}
+
+			let par = document.querySelector("main");
+			if(!check_home()) { par = par.querySelector(".list"); }
+
+			var start = -1, end = -1;
+			var range = [];
+			for(var i = 0; i < par.children.length; i++) {
+				if(par.children[i].classList.contains("summary")) {
+					if(start == -1) start = i;
+					end = i;
+					range.push(par.children[i]);
+				}
+			}
+			range.sort(function(a, b) {
+				for(var i = 0; i < cmp_order.length; i++) {
+					var key = keys[cmp_order[i]];
+					var x = a.querySelector("." + key).innerText;
+					var y = b.querySelector("." + key).innerText;
+
+					if(x == y) continue;
+
+					if(key == "front-matter-wordcount") {
+						x = x.replace(/^[^0-9]*/,"").replace(/[^0-9]*$/,"");
+						x = parseInt(x);
+
+						y = y.replace(/^[^0-9]*/,"").replace(/[^0-9]*$/,"");
+						y = parseInt(y);
+						return x - y;
+					}
+
+					return x.localeCompare(y);
+				}
+			});
+			range.reverse();
+
+			for(var i = start; i <= end; i++) {
+				par.insertBefore(range[i - start], par.children[i]);
+			}
+
+			close_sort_items();
+		}
+	</script>
+</div>
+{{ end }}
