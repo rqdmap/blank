@@ -27,11 +27,11 @@
 		<div class="dropdown-list">
 		{{ range .Site.Params.socials }}
 			<div class="dropdown-item">
-				<a href="{{ .link }}">
+				<div onmousedown="window.location.href='{{ .link }}'">
 					<span class="zh_name">{{ .zh_name }}</span>
 					/
 					<span class="en_name">{{ .en_name }}</span>
-				</a>
+				</div>
 			</div>
 		{{ end }}
 		</div>

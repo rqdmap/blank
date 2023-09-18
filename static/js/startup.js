@@ -13,7 +13,7 @@
 	});
 
 	dropdownBtn.addEventListener('blur', function(){
-			list.style.display = 'none';
+		list.style.display = 'none';
 	})
 })()
 
@@ -24,4 +24,4 @@ addLoadEvent(function() {
 	if (sortParam != null) {
 		sort_items(sortParam);
 	}
-})()
+})
