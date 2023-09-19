@@ -550,7 +550,7 @@ th, td {
 	}
 
 	.content-container {
-		margin-top: 10%;
+		margin-top: 75px;
 		margin-left: 0%;
 		margin-right: 0%;
 		box-shadow: 0px 0px 0px;
@@ -560,7 +560,7 @@ th, td {
 	.rightbar-container {
 		position: absolute;
 		display: flex;
-		width: 50%;
+		width: 100%;
 		top: 0;
 	}
 
