@@ -316,7 +316,7 @@ th, td {
 	right: 0;
 
 	width: 25%;
-	height: 70%;
+	height: 50%;
 	overflow: auto;
 }
 
@@ -550,15 +550,17 @@ th, td {
 	}
 
 	.content-container {
-		margin-top: 7%;
+		margin-top: 10%;
 		margin-left: 0%;
 		margin-right: 0%;
 		box-shadow: 0px 0px 0px;
+		z-index: 10;
 	}
 
 	.rightbar-container {
 		position: absolute;
-		width: 100%;
+		display: flex;
+		width: 50%;
 		top: 0;
 	}
 
@@ -567,6 +569,7 @@ th, td {
 	}
 
 	.rightbar-container .sort-btn {
+		position: absolute;
 		top: 20px;
 		left: auto;
 		right: 25px;
@@ -576,8 +579,10 @@ th, td {
 	}
 
 	.rightbar-container .sort-items {
+		position: absolute;
 		float: right;
 		right: 25px;
+		z-index: 20;
 	}
 
 	.rightbar-container .sort-btn svg {
