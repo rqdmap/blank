@@ -1,0 +1,19 @@
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+{{- $pages := slice -}}
+{{- range .Site.RegularPages -}} {{- if eq .Draft false -}}
+{{- $pages = $pages | append . -}}
+{{- end -}} {{- end -}}
+{{ range .Site.Sections }} {{- if not (in site.Params.searchBlackLists .Type) }}
+{{- $pages = $pages | append . -}}
+{{ end }} {{ end }}
+<search>
+	{{ range $pages }}
+	<entry>
+		<title>{{ .Title }}</title>
+		<url>{{ .RelPermalink }}</url>
+		<content type="html">{{ printf "<![CDATA[" | safeHTML}}
+			{{ replaceRE `(?s:--- HINT FOR START ---.*--- HINT FOR END ---)` "(CONTENT IS ENCRYPTED)" .Plain | safeHTML }} 
+		{{ printf "]]" | safeHTML}}></content>
+	</entry>
+	{{end}}
+</search>

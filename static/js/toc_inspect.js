@@ -7,6 +7,7 @@ var toc_inspect = function(){
 
 	const all_toc = content.querySelectorAll(selector.join());
 	const toc = document.querySelector('.toc');
+	if(toc == null) return ;
 	const container = toc.parentNode;
 
 	const throttle = function(func, wait){

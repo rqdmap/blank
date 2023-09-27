@@ -24,4 +24,8 @@ addLoadEvent(function() {
 	if (sortParam != null) {
 		sort_items(sortParam);
 	}
-})
+});
+
+(function(){
+
+})()

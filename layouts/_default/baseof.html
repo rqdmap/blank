@@ -19,13 +19,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="{{ "css/katex.min.css" | relURL }}">
-	<script src="{{ "js/katex/katex.min.js" | relURL }}"></script>
-	<script defer src="{{ "js/katex/auto-render.min.js" | relURL }}"
-		onload='renderMathInElement(document.body, {delimiters: [
-			{left: "$$", right: "$$", display: true},
-			{left: "$", right: "$", display: false}
-]});'>
-	</script>
+	{{ partial "pre-scripts.html" . }}
 </head>
 <body>
 	{{ partial "sidebar" . }}
@@ -34,8 +28,8 @@
 	</div>
 	<div class='rightbar-container'>
 		{{ partial "toc.html" . }}
-		{{ partial "sort.html" . }}
+		{{ partial "utils" . }}
 	</div>
-	{{ partial "scripts.html" . }}
+	{{ partial "post-scripts.html" . }}
 </body>
 </html>
