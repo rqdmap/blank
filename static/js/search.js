@@ -172,7 +172,10 @@ function search_input() {
 	}
 
 	const get_indices = function(str, key) {
-		let regex = new RegExp(key, 'gi');
+		function escapeRegExp(string) {
+			return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+		}
+		let regex = new RegExp(escapeRegExp(key), 'gi');
 		let indices = []
 		let match;
 		while((match = regex.exec(str)) != null) {
@@ -216,6 +219,7 @@ function search_input() {
 
 		var input = document.querySelector('.search-input');
 		var value = input.value;
+		console.log(value)
 
 		loadXMLFile("/search/index.xml", function(result) {
 			let res = []
