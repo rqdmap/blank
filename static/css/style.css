@@ -89,10 +89,10 @@ body {
 .sidebar-items {
 	display: flex;
 	flex-direction: column;
-	padding-top: 40px;
+	padding-top: 25px;
 
 	font-size: 1.2rem;
-	line-height: 3rem;
+	line-height: 2.7rem;
 }
 
 .sidebar-item {
