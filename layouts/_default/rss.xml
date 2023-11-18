@@ -25,7 +25,7 @@
     {{- with .OutputFormats.Get "RSS" -}}
     {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{- end -}}
-	{{ range $pages }} {{ if not (in site.Params.rssBlackLists .Type) }}
+	{{ range $pages }} {{ if not (in site.Params.rssBlock .Type) }}
     <item>
       <title>{{ .Title }}</title>
       <link>{{ .Permalink }}</link>

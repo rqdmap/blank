@@ -126,5 +126,12 @@
 	}
 
 	if(document.location.host.includes('localhost')) return ; 
+
+	var script = document.createElement('script');
+	script.async = true;
+	script.src = 'https://umami.rqdmap.top/random-string.js';
+	script.setAttribute('data-website-id', '02564888-eb0f-4d2c-85eb-b38595a52ca9');
+	document.head.appendChild(script);
+
 	query();
 })();

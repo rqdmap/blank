@@ -3,7 +3,7 @@
 {{- range .Site.RegularPages -}} {{- if eq .Draft false -}}
 {{- $pages = $pages | append . -}}
 {{- end -}} {{- end -}}
-{{ range .Site.Sections }} {{- if not (in site.Params.searchBlackLists .Type) }}
+{{ range .Site.Sections }} {{- if not (in site.Params.searchBlock .Type) }}
 {{- $pages = $pages | append . -}}
 {{ end }} {{ end }}
 <search>

@@ -1,4 +1,5 @@
-{{ if in (slice "section" "home") .Kind }}
+{{ if in (slice "section" "home" "term") .Kind }}
+{{ if not (in site.Params.utilsBlock .Type) }}
 <div class="utils">
 
 <button class="sort-btn" onmousedown="toggle_sort_items()" onblur="close_sort_items()">
@@ -21,4 +22,5 @@
 </div>
 
 </div>
+{{ end }}
 {{ end }}
