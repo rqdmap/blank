@@ -483,6 +483,11 @@ th, td {
 	flex-grow: 1;
 }
 
+.search-pending {
+	padding: 0px 15px;
+	font-size: 0.9rem;
+}
+
 .search-total-count {
 	padding: 0px 15px;
 	display: inline-block;

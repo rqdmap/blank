@@ -4,7 +4,28 @@
 
 <script src="{{"/js/sort.js" | relURL}}"></script>
 <script src="{{"/js/fuse.min.js" | relURL}}"></script>
-<script src="{{"/js/search.js" | relURL}}"></script>
+
+<!-- <script src="{{"/js/search.js" | relURL}}"></script> -->
+
+{{- $pages := slice -}}
+{{- range .Site.RegularPages -}} {{- if eq .Draft false -}}
+{{- $pages = $pages | append . -}}
+{{- end -}} {{- end -}}
+{{ range .Site.Sections }} {{- if not (in site.Params.searchBlock .Type) }}
+{{- $pages = $pages | append . -}}
+{{ end }} {{ end }}
+
+{{- $total_chars := 0 }}
+{{ range $pages }} 
+{{ $total_chars = math.Add $total_chars (int .WordCount) }} 
+{{ end }} 
+
+{{- $js := resources.Get "js/search.js" -}}
+{{- $opts := dict
+	"params" (dict "total_chars" $total_chars)
+-}}
+{{- $js = $js | js.Build $opts -}}
+<script src="{{ $js.RelPermalink }}"></script>
 
 <!-- 解密完成后将重新调用一编修改HTML元素的js脚本 -->
 <script type="text/javascript" src="{{"/js/crypto-js/crypto-js.js" | relURL}}"></script>

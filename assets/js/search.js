@@ -1,4 +1,6 @@
-function clear_input() {
+import params from "@params";
+
+export function clear_input() {
   let inp = document.querySelector('.search-input');
 	inp.value = '';
 }
@@ -219,7 +221,20 @@ function search_input() {
 
 		var input = document.querySelector('.search-input');
 		var value = input.value;
-		console.log(value)
+		console.log('搜索: ', value)
+
+		if(value.length == 0) {
+			let res = document.querySelector('.search-result');
+			res.innerHTML = ''
+			return;
+		}
+
+		let pendingElem = document.createElement('div');
+		pendingElem.classList.add('search-pending');
+		pendingElem.innerHTML = '正在从 ' + params.total_chars + ' 个字符中玩命搜索...';
+		let res = document.querySelector('.search-result');
+		res.innerHTML = ''; res.append(pendingElem);
+
 
 		loadXMLFile("/search/index.xml", function(result) {
 			let res = []
@@ -266,7 +281,7 @@ function search_input() {
 
 	let isCaseSensitive = false;
 
-	debounce(real_search, 500)(
+	debounce(real_search, 300)(
 		isCaseSensitive,
 	)
 }
@@ -310,3 +325,10 @@ function xmlToJson(xmlString) {
   parseNode(xmlString.documentElement, result);
   return result.search[0].entry;
 }
+
+var btnElem = document.querySelector('.search-btn');
+var overlayElem = document.querySelector('.search-overlay');
+var inp = document.querySelector('.search-input');
+btnElem.addEventListener('click', toggle_search_window);
+overlayElem.addEventListener('click', close_search_window);
+inp.addEventListener('input', search_input);
