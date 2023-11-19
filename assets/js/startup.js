@@ -25,7 +25,3 @@ addLoadEvent(function() {
 		sort_items(sortParam);
 	}
 });
-
-(function(){
-
-})()

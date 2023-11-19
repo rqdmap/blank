@@ -221,7 +221,7 @@ function search_input() {
 
 		var input = document.querySelector('.search-input');
 		var value = input.value;
-		console.log('搜索: ', value)
+		// console.log('搜索: ', value)
 
 		if(value.length == 0) {
 			let res = document.querySelector('.search-result');
@@ -229,11 +229,19 @@ function search_input() {
 			return;
 		}
 
-		let pendingElem = document.createElement('div');
-		pendingElem.classList.add('search-pending');
-		pendingElem.innerHTML = '正在从 ' + params.total_chars + ' 个字符中玩命搜索...';
-		let res = document.querySelector('.search-result');
-		res.innerHTML = ''; res.append(pendingElem);
+		setTimeout(function() {
+			let res = document.querySelector('.search-result');
+			let inp = document.querySelector('.search-input');
+			if(res.innerHTML.length != 0 || inp.value.length == 0) {
+				return
+			}
+			res.innerHTML = '';
+			let pendingElem = document.createElement('div');
+			pendingElem.classList.add('search-pending');
+			pendingElem.innerHTML = '正在从 ' + params.total_chars + ' 个字符中玩命搜索...';
+
+			res.append(pendingElem);
+		}, 500)
 
 
 		loadXMLFile("/search/index.xml", function(result) {
@@ -327,8 +335,10 @@ function xmlToJson(xmlString) {
 }
 
 var btnElem = document.querySelector('.search-btn');
+if(btnElem) btnElem.addEventListener('click', toggle_search_window);
+
 var overlayElem = document.querySelector('.search-overlay');
+if(overlayElem) overlayElem.addEventListener('click', close_search_window);
+
 var inp = document.querySelector('.search-input');
-btnElem.addEventListener('click', toggle_search_window);
-overlayElem.addEventListener('click', close_search_window);
-inp.addEventListener('input', search_input);
+if(inp) inp.addEventListener('input', search_input);

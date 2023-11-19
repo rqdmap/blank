@@ -1,6 +1,10 @@
-<script src="{{"/js/startup.js" | relURL}}"></script>
+{{- $js := resources.Get "js/startup.js" -}}
+{{- $js = $js | js.Build (dict "minify" true) -}}
+<script src="{{ $js.RelPermalink }}"></script>
 
-<script src="{{"/js/hit.js" | relURL}}"></script>
+{{- $js := resources.Get "js/hit.js" -}}
+{{- $js = $js | js.Build (dict "minify" true) -}}
+<script src="{{ $js.RelPermalink }}"></script>
 
 <script src="{{"/js/sort.js" | relURL}}"></script>
 <script src="{{"/js/fuse.min.js" | relURL}}"></script>
@@ -23,6 +27,7 @@
 {{- $js := resources.Get "js/search.js" -}}
 {{- $opts := dict
 	"params" (dict "total_chars" $total_chars)
+	"minify" true
 -}}
 {{- $js = $js | js.Build $opts -}}
 <script src="{{ $js.RelPermalink }}"></script>
@@ -34,5 +39,4 @@
 <!-- 需要实际修改HTML元素 -->
 <script src="{{"/js/code-block.js" | relURL}}"></script>
 <script src="{{"/js/toc_inspect.js" | relURL}}"></script>
-
 
