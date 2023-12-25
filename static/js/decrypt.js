@@ -63,7 +63,7 @@ addLoadEvent(function() {
         let password = localStorage.getItem(key);
 
         if (!password) {
-						onModifyHtml();
+						// onModifyHtml();
             break;
         } else {
             console.log("Found password for part " + index);

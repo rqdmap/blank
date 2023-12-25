@@ -13,6 +13,12 @@
 			</a>
 		</div>
 		{{ end }}
+
+		<div>
+		{{ range .Site.Params.icons }}
+		<a href="{{ .link }}" class="sidebar-icon"> {{.emoji}} </a>
+		{{ end }}
+		</div>
 	</div>
 
 	<div class="dropdown-items">

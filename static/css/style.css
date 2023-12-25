@@ -20,6 +20,7 @@ a:hover {
 	text-decoration: none;
 }
 
+
 object,
 img{
 	max-width: 100%;
@@ -70,6 +71,7 @@ body {
 	height: 90%;
 	width: 25%;
 
+
 	text-align: right;
 
 	display: flex;
@@ -103,6 +105,10 @@ body {
 .sidebar-item:hover{
 	background: linear-gradient(to left, #f1f1f1, white);
 	background-position: right;
+}
+
+.sidebar-icon {
+	margin-right: 50px;
 }
 
 .dropdown-items {

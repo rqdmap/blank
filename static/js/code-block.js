@@ -57,6 +57,7 @@ var code_block = function(){
 			foldBtn.className = "code-toggle";
 			foldBtn.type = "button";
 			foldBtn.innerHTML = svgFold;
+
 			foldBtn.addEventListener("click", () => {
 				if(pre.classList.contains('code-folded')) {
 					pre.classList.remove('code-folded');
