@@ -278,18 +278,21 @@ th, td {
 	padding: 5px 10px;
 }
 
+.git-container {
+	margin-top: 25px;
+}
 
 /* git 修改记录 */
-.git{
-	margin-top: 50px;
-    font-size: 1.5em;
+.git {
+	font-size: 1.5em;
 
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	font-weight: bold;
 	/* background-color: #A4FFC0; */
+
 }
 
 .gitLog{
@@ -329,7 +332,8 @@ th, td {
 .toc{
 	margin-left: 40px;
 	width: 80%;
-	max-width: 350px; overflow-wrap: anywhere;
+	max-width: 350px;
+	overflow-wrap: anywhere;
 	padding-bottom: 10px;
 	padding-left: 20px;
 
@@ -606,6 +610,36 @@ th, td {
 	margin-right: 25px;
 	margin-left: 25px;
 	white-space: nowrap;
+}
+
+/* ******** */
+/* 联系方式 */
+/* ******** */
+
+
+.contact-container > img {
+	margin: 0;
+}
+.contact-container {
+	margin-top: 25px;
+	background-color: #f2f2f2;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+	padding: 20px;
+
+	display: flex;
+	align-items: center;
+}
+
+.contact-favicon {
+	width:		128px;
+	height:		128px;
+	border-radius:50%;
+}
+
+.contact-info {
+	margin-left: 20px;
+	line-height: 2;
 }
 
 /* ******** */
