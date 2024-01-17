@@ -1,6 +1,6 @@
 {{ define "main" }}
 	<main>
-		{{ range (where .Site.RegularPages "Section" "in" site.Params.indexSections).ByLastmod.Reverse -}}
+		{{ range (where .Site.RegularPages "Section" "in" site.Params.indexSections).ByDate.Reverse -}}
 				{{ .Render "summary" }}
 		{{ end }}
 	</main>

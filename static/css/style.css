@@ -11,7 +11,7 @@ a {
 }
 
 a:hover {
-	font-weight: 600;
+	font-weight: 700;
 	text-decoration: underline;
 }
 
@@ -84,7 +84,7 @@ body {
 
 .sidebar-title > a {
 	font-family: 'Bungee Shade';
-	font-weight: 600;
+	font-weight: 700;
 	font-size: 2rem;
 }
 
@@ -348,7 +348,7 @@ th, td {
 	padding-top: 10px;
 
 	font-size: 1.2rem;
-	font-weight: 600;
+	font-weight: 700;
 }
 
 .toc-h2,
@@ -358,7 +358,7 @@ th, td {
 }
 
 .toc .active {
-	font-weight: 600;
+	font-weight: 700;
 	text-decoration: underline;
 }
 
@@ -526,7 +526,7 @@ th, td {
 
 .search-item-title:hover {
 	text-decoration: underline;
-	font-weight: 600;
+	font-weight: 700;
 }
 
 .search-item-content span {
@@ -534,7 +534,7 @@ th, td {
 }
 
 .search-highlight {
-	font-weight: 600;
+	font-weight: 700;
 }
 
 .search-dim {
