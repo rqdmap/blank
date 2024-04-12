@@ -328,7 +328,7 @@ th, td {
 
 	width: 25%;
 	height: 50%;
-	overflow: auto;
+	overflow: hidden;
 }
 
 .toc{
