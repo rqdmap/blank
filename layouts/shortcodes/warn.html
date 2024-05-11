@@ -18,8 +18,7 @@
 {{ if ge (len $slice) 2 }}
 <div class="msg-body">
 {{ range (last (sub (len $slice) 1) $slice) }}
-{{ safeHTML . }}
-{{ end }}
+{{ safeHTML . }} {{ end }}
 </div>
 {{ end }}
 
