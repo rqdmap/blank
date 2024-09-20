@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <!-- Special Page, use Single Page style -->
+	<main>
+		<div class='list'>
+
+			{{ .Scratch.Set "front-matter-enable" ""}}
+      {{ partial "content" . }}
+
+      {{ partial "changelog" . }}
+		</div>
+	</main>
+{{ end }}

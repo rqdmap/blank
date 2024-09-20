@@ -1,62 +1,57 @@
 <div class="sidebar">
-	<div class='sidebar-title'>
+  <div class='sidebar-title'>
 		<a href='/'> {{ .Site.Author.name }} </a>
 	</div>
 
-	<div class="sidebar-items">
+	<div class="sidebar-categories">
 		{{ range .Site.Params.socials }}
-		<div class="sidebar-item">
-			<a href="{{ .link }}">
-				<span class="zh_name">{{ .zh_name }}</span>
-				/
-				<span class="en_name">{{ .en_name }}</span>
-			</a>
+		<div class="sidebar-categories-item">
+      {{ if .external }}
+      <a class="external-link" href="{{ .link }}"> {{- .zh_name -}} </a>
+      {{ else }}
+      <a href="{{ .link }}"> {{- .zh_name -}} </a>
+      {{ end }}
 		</div>
 		{{ end }}
-
-		<div>
-		{{ range .Site.Params.icons }}
-		<a href="{{ .link }}" class="sidebar-icon"> {{.emoji}} </a>
-		{{ end }}
-		</div>
 	</div>
 
-	<div class="dropdown-items">
-		<button class='dropdown-btn'>
-			<svg viewBox="0 0 16 16" width="16" height="16">
-				<path
-					d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z">
-				</path>
-			</svg>
-		</button>
 
-		<div class="dropdown-list">
-		{{ range .Site.Params.socials }}
-			<div class="dropdown-item">
-				<div onmousedown="window.location.href='{{ .link }}'">
-					<span class="zh_name">{{ .zh_name }}</span>
-					/
-					<span class="en_name">{{ .en_name }}</span>
-				</div>
-			</div>
-		{{ end }}
-		</div>
-	</div>
+  <div class="sidebar-tools">
+    <button class="sort-btn" onmousedown="toggle_sort_items()" onblur="close_sort_items()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="25" width="25"> <g> <path d="M20 4v12h3l-4 5-4-5h3V4h2zm-8 14v2H3v-2h9zm2-7v2H3v-2h11zm0-7v2H3V4h11z" id="mainIconPathAttribute"></path> </g> </svg>
+    </button>
+    <div class='sort-items'>
+      <div onmousedown="set_sort_url('0')">创建时间</div>
+      <div onmousedown="set_sort_url('1')">修改时间</div>
+      <div onmousedown="set_sort_url('2')">字数</div>
+    </div>
 
-	<div class="sidebar-footer">
+    <button class="search-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 16 16"> <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" id="mainIconPathAttribute"></path> </svg>
+    </button>
 
-		<div id='total-views'></div>
+    <div class='search-overlay'></div>
+    <div class='search-window'>
+      <input class='search-input'>
+      <div class='search-result'></div>
+    </div>
 
-		Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" style="text-decoration: underline">CC BY-NC-ND 4.0</a>
+  </div>
 
-		<br>
-
-		Powered by <a href="https://gohugo.io" style="text-decoration:underline">Hugo</a>
-		|
-		Theme <a href="https://github.com/rqdmap/blank" style="text-decoration:underline">blank</a>
-
-		<br>
-
-		Copyright &copy; 2020-{{ now.Year }} rqdmap
-	</div>
+	<!-- <div class="sidebar-footer"> -->
+	<!---->
+	<!-- 	<div id='total-views'></div> -->
+	<!---->
+	<!-- 	Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" style="text-decoration: underline">CC BY-NC-ND 4.0</a> -->
+	<!---->
+	<!-- 	<br> -->
+	<!---->
+	<!-- 	Powered by <a href="https://gohugo.io" style="text-decoration:underline">Hugo</a> -->
+	<!-- 	| -->
+	<!-- 	Theme <a href="https://github.com/rqdmap/blank" style="text-decoration:underline">blank</a> -->
+	<!---->
+	<!-- 	<br> -->
+	<!---->
+	<!-- 	Copyright &copy; 2020-{{ now.Year }} rqdmap -->
+	<!-- </div> -->
 </div>

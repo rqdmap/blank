@@ -1,22 +1,46 @@
 <div class='front-matter'>
-	<time class='front-item front-matter-create-time' datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">  {{ .Date.Format "2006.01.02 15:04" }}</time>
-	<time class='front-item front-matter-lastmod-time' datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">  {{ .Lastmod.Format "2006.01.02 15:04" }}</time>
+  <!-- options: -->
+  {{ $enable := .Scratch.Get "front-matter-enable" }}
 
-	{{ range .Params.categories }}
-	<a class='front-item front-matter-categories' href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
-	{{ end }}
+  {{ if in $enable "create-time" }}
+	<time class='front-item' datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">  {{ .Date.Format "2006.01.02 15:04" }}</time>
+  {{ end }}
 
-	{{ range .Params.tags }}
-	<a class='front-item front-matter-tags' href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
-	{{ end }}
+  {{ if in $enable "modified-time" }}
+	<time class='front-item' datetime="{{ .Date.Format "2006-01-02T15:04:05" }}">  {{ .Lastmod.Format "2006.01.02 15:04" }}</time>
+  {{ end }}
 
-	{{ range .Params.anime_tags }}
-	<a class='front-item front-matter-anime-tags' href="{{ "/anime_tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
-	{{ end }}
+  {{ if in $enable "categories" }}
+    {{ range .Params.categories }}
+    <a class='front-item' href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
+    {{ end }}
+  {{ end }}
 
-	{{ range .Params.rate }}
-	<a class='front-item front-matter-rate' href="{{ "/rate/" | relURL}}{{ . | urlize }}"> 󰅺 {{ . }}</a>
-	{{ end }}
+  {{ if in $enable "tags" }}
+    {{ range .Params.tags }}
+    <a class='front-item' href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
+    {{ end }}
+  {{ end }}
 
-	<span class='front-item front-matter-wordcount'> 󰈭  {{ countwords .Content }}字 </span>
+  {{ if in $enable "anime_tags" }}
+    {{ range .Params.anime_tags }}
+    <a class='front-item' href="{{ "/anime_tags/" | relLangURL }}{{ . | urlize }}">  {{ . }}</a>
+    {{ end }}
+  {{ end }}
+
+  {{ if in $enable "rate" }}
+    {{ range .Params.rate }}
+    <a class='front-item' href="{{ "/rate/" | relURL}}{{ . | urlize }}"> 󰅺 {{ . }}</a>
+    {{ end }}
+  {{ end }}
+
+  {{ if in $enable "wordcount" }}
+    <span class='front-item'> 󰈭  {{ countwords .Content }}字 </span>
+  {{ end }}
+
+  {{ if in $enable "vistor" }}
+    <span class='front-item'> 󰈈  <span id='page-view'>0</span> </span>
+
+    <span class='front-item'>   <span id='page-vistor'>0</span> </span>
+  {{ end }}
 </div>

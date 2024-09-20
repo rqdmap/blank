@@ -1,0 +1,10 @@
+{{ if or .Title .Content }}
+<div>
+  {{ with .Title }}<h1 class='front-title'>{{ . }}</h1>{{ end }}
+
+  <!-- Pass front-matter-enable options to front-matter -->
+  {{ partial "front-matter" . }}
+
+  {{ with .Content }}<div>{{ . }}</div>{{ end }}
+</div>
+{{ end }}

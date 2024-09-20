@@ -1,0 +1,38 @@
+{{ define "main" }}
+	<main>
+		<div class='list'>
+			<!-- {{ if or .Title .Content }} -->
+			<!-- <div> -->
+			<!-- 	<div style='display: flex; align-items: center; justify-content: space-between'> -->
+			<!-- 		{{ with .Title }}<h1 style='display:inline-block;'>{{ . }}</h1>{{ end }} -->
+			<!-- 		{{ if eq .Kind "section" }} <a href="/statistics" id='page-views'>   </a> {{ end }} -->
+			<!-- 	</div> -->
+			<!-- 	{{ with .Content }}<div>{{ . }}</div>{{ end }} -->
+			<!-- </div> -->
+			<!-- {{ end }} -->
+
+<div class="error-block msg-block">
+
+<div class="error-title msg-title">
+  {{ with .Title }} {{ . }} {{ end }}
+</div>
+<div class="msg-body">
+				{{ with .Content }}<div>{{ . }}</div>{{ end }}
+</div>
+
+</div>
+
+			<!-- Taxonomy类型不显示具体的摘要列表-->
+			{{ if ne .Kind "taxonomy" }} 
+				{{ range .Pages }}
+					{{ .Render "summary" }}
+				{{ end }}
+			{{ end }}
+
+			<!-- 只有Section类型才启用更新日志-->
+			{{ if eq .Kind "section" }} 
+				{{ partial "changelog" . }}
+			{{ end }}
+		</div>
+	</main>
+{{ end }}

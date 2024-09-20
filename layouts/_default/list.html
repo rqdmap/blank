@@ -1,10 +1,13 @@
 {{ define "main" }}
 	<main>
+        Section {{ .Section }} <br>
+        Kind {{ .Kind }} <br>
+        Type {{ .Type }} <br>
 		<div class='list'>
 			{{ if or .Title .Content }}
 			<div>
 				<div style='display: flex; align-items: center; justify-content: space-between'>
-					{{ with .Title }}<h1 style='display:inline-block;'>{{ . }}</h1>{{ end }}
+					{{ with .Title }}<h1 style='display:inline-block;'>Default list: {{ . }}</h1>{{ end }}
 					{{ if eq .Kind "section" }} <a href="/statistics" id='page-views'>   </a> {{ end }}
 				</div>
 				{{ with .Content }}<div>{{ . }}</div>{{ end }}
