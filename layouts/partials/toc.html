@@ -2,7 +2,7 @@
 {{ .Scratch.Set "last_level" 1 }}
 {{- $has_headers := ge (len $headers) 1 -}}
 {{- if $has_headers -}}
-<div class='toc'>
+<div class='toc-container'> <div class='toc'>
 	<div class="toc-title"> {{ .Title }} </div>
 	{{- range $headers -}}
 		{{- $last_level := $.Scratch.Get "last_level" -}}
@@ -27,5 +27,5 @@
 			{{ $.Scratch.Set "last_level" $next_level }}
 		{{- end -}}
 	{{- end -}}
-</div>
+</div> </div>
 {{- end -}}

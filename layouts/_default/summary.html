@@ -1,6 +1,7 @@
 <div class='summary'>
 	<h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
 
+	{{ .Scratch.Set "front-matter-enable" "create-time modified-time categories tags anime_tags rate wordcount" }}
 	{{ partial "front-matter" . }}
 
 	<div class='summary-content'>

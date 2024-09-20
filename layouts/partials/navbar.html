@@ -1,11 +1,11 @@
-<div class="sidebar">
-  <div class='sidebar-title'>
+<div class="navbar">
+  <div class='navbar-title'>
 		<a href='/'> {{ .Site.Author.name }} </a>
 	</div>
 
-	<div class="sidebar-categories">
+	<div class="navbar-categories">
 		{{ range .Site.Params.socials }}
-		<div class="sidebar-categories-item">
+		<div class="navbar-categories-item">
       {{ if .external }}
       <a class="external-link" href="{{ .link }}"> {{- .zh_name -}} </a>
       {{ else }}
@@ -16,7 +16,7 @@
 	</div>
 
 
-  <div class="sidebar-tools">
+  <div class="navbar-tools">
     <button class="sort-btn" onmousedown="toggle_sort_items()" onblur="close_sort_items()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="25" width="25"> <g> <path d="M20 4v12h3l-4 5-4-5h3V4h2zm-8 14v2H3v-2h9zm2-7v2H3v-2h11zm0-7v2H3V4h11z" id="mainIconPathAttribute"></path> </g> </svg>
     </button>

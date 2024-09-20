@@ -24,12 +24,9 @@
 </head>
 
 <body>
-	{{ partial "sidebar" . }}
+	{{ partial "navbar" . }}
 	<div class='content-container'>
 		{{ block "main" . }}{{ end }}
-	</div>
-	<div class='rightbar-container'>
-		{{ partial "toc.html" . }}
 	</div>
 	{{ partial "post-scripts.html" . }}
 </body>

@@ -1,0 +1,11 @@
+{{ define "main" }}
+<main>
+	{{ partial "content" . }}
+
+	<div class='content-list'>
+	{{ range .Pages }}
+		{{ .Render "summary" }}
+	{{ end }}
+	</div>
+</main>
+{{ end }}

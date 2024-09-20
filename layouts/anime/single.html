@@ -1,0 +1,14 @@
+{{ define "main" }}
+	<main>
+		<article>
+			{{ .Scratch.Set "front-matter-enable" "create-time modified-time categories tags anime_tags rate wordcount" }}
+			{{ partial "content" . }}
+		</article>
+
+		{{ partial "toc" . }} 
+
+		{{ partial "contact" . }} 
+		{{ partial "changelog" . }}
+
+	</main>
+{{ end }}
