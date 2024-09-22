@@ -1,20 +1,14 @@
 {{ define "main" }}
 	<main>
 		<article>
-			<div style='display: flex; align-items: center; justify-content: space-between'>
-				<h1>Def1ault single: {{ .Title }}</h1>
-				<a href="/statistics" id='page-views'>   </a>
-			</div>
-
-			{{ partial "front-matter" . }}
-
-			<div>
-				{{ .Content }}
-			</div>
-
+			{{ .Scratch.Set "front-matter-enable" "create-time modified-time categories tags anime_tags rate wordcount" }}
+			{{ partial "content" . }}
 		</article>
+
+		{{ partial "toc" . }} 
 
 		{{ partial "contact" . }} 
 		{{ partial "changelog" . }}
+
 	</main>
 {{ end }}

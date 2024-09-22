@@ -1,7 +1,12 @@
 {{ define "main" }}
 <main>
+
 	{{ .Scratch.Set "front-matter-enable" ""}}
 	{{ partial "content" . }}
+
+	{{ .Scratch.Set "TargetPage" "/categories" }}
+	{{ .Scratch.Set "weightFactor" "10" }}
+	{{ partial "tag-cloud" . }}
 
 	<div class='content-list'>
 	{{ range .Pages }}

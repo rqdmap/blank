@@ -2,6 +2,10 @@
 <main>
 	{{ partial "content" . }}
 
+	{{ .Scratch.Set "TargetPage" "/rate /anime_tags" }}
+	{{ .Scratch.Set "weightFactor" "10" }}
+	{{ partial "tag-cloud" . }}
+
 	<div class='content-list'>
 	{{ range .Pages }}
 		{{ .Render "summary" }}

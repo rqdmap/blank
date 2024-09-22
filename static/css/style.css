@@ -3,10 +3,16 @@
   --navbar-padding: 20%;
   --font-size: 16px;
   --content-margin: 30%;
+  --line-height: 1.5;
 }
 
 a {
     color: #000;
+    text-decoration: underline;
+}
+
+a:hover {
+    font-weight: bold;
     text-decoration: underline;
 }
 
@@ -19,10 +25,6 @@ a {
     background-size: cover;
 }
 
-a:hover {
-    font-weight: 700;
-    text-decoration: underline;
-}
 
 object,
 img{
@@ -63,6 +65,8 @@ body {
     display: flex;
     flex-direction: column;
     font-size: var(--font-size);;
+
+	line-height: var(--line-height);
 }
 
 /**
@@ -74,7 +78,6 @@ body {
     width: calc(100% - 2 * var(--navbar-padding));
     padding-left: var(--navbar-padding);
     padding-right: var(--navbar-padding);
-
 
     display: flex;
     flex-direction: row;
@@ -324,6 +327,7 @@ main {
     margin-right: var(--content-margin);
     box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
     background-color: white;
+	
 }
 
 h1 {
@@ -334,10 +338,14 @@ h1 {
 
 /* 引用 */
 blockquote {
-    margin: 0;
     padding: 0 1em;
-    color: #57606a;
-    border-left: 0.25em solid #d0d7de;
+	width: 80%;
+	background: #F9F9F9;
+	border-color: #2F6FAB;
+	border-width: 1px;
+	border-style: solid;
+
+	box-shadow: 5px 5px 0px rgba(0,0,0,0.3);
 }
 
 
@@ -348,7 +356,7 @@ blockquote {
     margin: 1.5rem 0;
     /* padding-bottom: 0.1rem; */
     border-radius: 3px;
-    box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+	box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
 }
 
 .msg-title {
@@ -358,6 +366,7 @@ blockquote {
 
 .msg-body {
     padding-left: 1rem;
+    padding-right: 1rem;
     font-size: 0.9rem;
     padding-bottom: 0.1rem;
 }
@@ -399,9 +408,8 @@ code {
 .highlight pre {
     padding: 16px;
     overflow: auto;
-    border-radius: 4px;
-  box-shadow: 5px 5px 5px rgba(68, 68, 68, 0.6);
-  border: 2px solid black;
+	border: 2px solid black;
+	box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
 }
 
 .highlight pre::-webkit-scrollbar {
@@ -512,13 +520,14 @@ th, td {
     overflow: hidden;
 }
 
-.toc{
+.toc {
     width: 80%;
 	max-width: 325px;
 
 	margin-top: 40px;
     margin-left: 40px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
     padding-left: 20px;
 
     overflow-wrap: anywhere;
@@ -555,8 +564,14 @@ th, td {
 /**
  * Front-matter
  */
-.front-matter {
-    line-height: 1.7rem;
+.front-matter a {
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.front-matter a:hover {
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 .front-title {
@@ -632,7 +647,7 @@ th, td {
     margin-top: 25px;
     background-color: #f2f2f2;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     padding: 20px;
 
     display: flex;
@@ -647,7 +662,7 @@ th, td {
 
 .contact-info {
     margin-left: 20px;
-    line-height: 2;
+    line-height: calc(var(--line-height) * 1.5);
 }
 
 /* ******** */

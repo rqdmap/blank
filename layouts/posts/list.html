@@ -1,5 +1,6 @@
 {{ define "main" }}
 <main>
+	{{ .Scratch.Set "front-matter-enable" ""}}
 	{{ partial "content" . }}
 
 	<div class='content-list'>
