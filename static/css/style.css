@@ -535,6 +535,8 @@ th, td {
     box-sizing: border-box;
     border-radius: 7px;
     background-color: #f2f2f2;
+
+    line-height: 1.25;
 }
 
 .toc a {
@@ -664,6 +666,30 @@ th, td {
     margin-left: 20px;
     line-height: calc(var(--line-height) * 1.5);
 }
+
+/**
+ * Footer
+ */
+
+.footer {
+  background-color: #f9f9f9;
+  color: #666;
+  text-align: center;
+  
+  line-height: 2;
+
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+.footer hr {
+  border: 0;
+  height: 1px;
+  background-color: #e5e5e5;
+
+  margin-bottom: 20px;
+}
+
 
 /* ******** */
 /* 手机屏幕 */

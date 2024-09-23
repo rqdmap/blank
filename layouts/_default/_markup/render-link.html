@@ -1,0 +1,13 @@
+{{ $isExternalLink := false }}
+{{ if or (strings.HasPrefix .Destination "http://") (strings.HasPrefix .Destination "https://")}}
+  {{ if not (strings.HasPrefix .Destination "{{ .Site.Params.BaseURL }}") }}
+    {{ $isExternalLink = true }}
+  {{ end }}
+{{ end }}
+<a href="{{ .Destination | safeURL }}"
+  {{- with .Title }} title="{{ . }}"{{ end -}}
+  {{- if $isExternalLink }} class=external-link {{ end -}}
+>
+  {{- with .Text }}{{ . }}{{ end -}}
+</a>
+{{- /* chomp trailing newline */ -}}

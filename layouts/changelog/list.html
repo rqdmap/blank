@@ -1,13 +1,13 @@
 {{ define "main" }}
   <!-- Special Page, use Single Page style -->
-  <main>
-      <div class='list'>
+    <main>
+    <div class='list'>
 
-        {{ .Scratch.Set "front-matter-enable" ""}}
-        {{ partial "content" . }}
+    {{ .Scratch.Set "front-matter-enable" "create-time modified-time wordcount vistor"}}
+    {{ partial "content" . }}
 
-        {{partial "contact" . }}
-        {{ partial "changelog" . }}
-      </div>
-  </main>
+    {{partial "contact" . }}
+    {{ partial "changelog" . }}
+    </div>
+    </main>
 {{ end }}
