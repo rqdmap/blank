@@ -1,0 +1,163 @@
+<div id="heatmap-wrapper">
+  <div id="year-selector"> </div>
+  <div id="heatmap-container"></div>
+</div>
+
+<script defer>
+function initYearSelector() {
+  const currentYear = new Date().getFullYear();
+  const yearSelector = document.getElementById('year-selector');
+  
+  for (let year = currentYear; year >= currentYear - 5; year--) {
+    const yearOption = document.createElement('div');
+    yearOption.className = 'year-option';
+    yearOption.textContent = year;
+    yearOption.onclick = () => selectYear(year);
+    yearSelector.appendChild(yearOption);
+  }
+  
+  // 默认选择当前年份
+  selectYear(currentYear);
+}
+
+function selectYear(year) {
+  const yearOptions = document.querySelectorAll('.year-option');
+  yearOptions.forEach(option => {
+    option.classList.remove('active');
+    if (parseInt(option.textContent) === year) {
+      option.classList.add('active');
+    }
+  });
+  createHeatmap(year);
+}
+
+
+<!-- function generateHeatmapData(year) { -->
+<!--   const data = new Array(366); -->
+<!---->
+<!--   const start = new Date(year, 0, 0); -->
+<!--   const oneDay = 1000 * 60 * 60 * 24; -->
+<!--   let date; -->
+<!---->
+<!--   {{ range .Site.RegularPages.GroupByDate "2006" }}  -->
+<!--     if('{{ .Key }}' == year) { -->
+<!--       {{ range .Pages }} -->
+<!--       {{ .LinkTitle }} -->
+<!--         date = new Date('{{ .Date }}'); -->
+<!--         data[Math.floor((date - start) / oneDay)] = {{ .WordCount | default 0 }}; -->
+<!--       {{ end }}  -->
+<!--     } -->
+<!--   {{ end }} -->
+<!---->
+<!--   console.log(data); -->
+<!--   return data; -->
+<!-- } -->
+
+function dayOfYear(date) {
+  const start = new Date(date.getFullYear(), 0, 0);
+  const diff = date - start;
+  const oneDay = 1000 * 60 * 60 * 24;
+  return Math.floor(diff / oneDay);
+}
+
+function generateHeatmapData(year) {
+  const data = [];
+  const startDate = new Date(year, 0, 1);
+  const endDate = new Date(year, 11, 31);
+
+  for (let date = new Date(startDate); date <= endDate; date.setDate(date.getDate() + 1)) {
+    data.push({
+      date: new Date(date),
+      value: 0
+    });
+  }
+  {{ range .Site.RegularPages.GroupByDate "2006" }} 
+    if('{{ .Key }}' == year) {
+      {{ range .Pages }}
+        var date = new Date('{{ .Date }}');
+        var value = {{ .WordCount | default 0 }};
+        data[dayOfYear(date)].value += value;
+      {{ end }}
+    }
+  {{ end }}
+  return data;
+}
+
+function createHeatmap(year) {
+  const container = document.getElementById('heatmap-container');
+  container.innerHTML = ''; // 清空容器
+  const data = generateHeatmapData(year);
+  
+  const firstDay = new Date(year, 0, 1).getDay();
+
+  // 添加空白单元格以对齐第一天
+  for (let i = 0; i < firstDay; i++) {
+    const emptyCell = document.createElement('div');
+    emptyCell.className = 'heatmap-cell';
+    container.appendChild(emptyCell);
+  }
+
+  data.forEach((day) => {
+    const cell = document.createElement('div');
+    cell.className = 'heatmap-cell';
+    cell.style.backgroundColor = getColor(day.value);
+    cell.dataset.value = day.value;
+    cell.dataset.date = day.date.toISOString().split('T')[0];
+    container.appendChild(cell);
+  });
+
+  setupTooltip();
+}
+
+function setupTooltip() {
+  const container = document.getElementById('heatmap-container');
+  const tooltip = document.createElement('div');
+  tooltip.className = 'tooltip';
+  document.body.appendChild(tooltip);
+
+  container.addEventListener('mouseover', showTooltip);
+  container.addEventListener('mousemove', moveTooltip);
+  container.addEventListener('mouseout', hideTooltip);
+}
+
+
+function showTooltip(e) {
+  if (e.target.classList.contains('heatmap-cell') && e.target.dataset.date) {
+    const tooltip = document.querySelector('.tooltip');
+    const value = e.target.dataset.value;
+    const date = new Date(e.target.dataset.date);
+    tooltip.textContent = `${date.toDateString()}: ${value} contributions`;
+    tooltip.style.opacity = '1';
+  }
+}
+
+function moveTooltip(e) {
+  const tooltip = document.querySelector('.tooltip');
+  tooltip.style.left = e.pageX + 10 + 'px';
+  tooltip.style.top = e.pageY + 10 + 'px';
+}
+
+function hideTooltip() {
+  const tooltip = document.querySelector('.tooltip');
+  tooltip.style.opacity = '0';
+}
+
+function getColor(value) {
+  const colors = [
+    '#ebedf0',
+    '#9be9a8',
+    '#40c463',
+    '#30a14e',
+    '#216e39'
+  ];
+
+  const base = 2000;
+  value = parseInt((value + base - 1) / base);
+  value = Math.min(value, colors.length - 1);
+  console.log(value)
+  return colors[value];
+}
+
+initYearSelector()
+</script>
+

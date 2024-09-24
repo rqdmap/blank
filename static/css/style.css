@@ -786,6 +786,62 @@ th, td {
 }
 
 
+/**
+ * Heatmap
+ */
+#heatmap-wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+#year-selector {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.year-option {
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.year-option.active {
+  background-color: #0366d6;
+  color: white;
+}
+
+#heatmap-container {
+  display: grid;
+  grid-template-columns: repeat(53, 1fr);
+  gap: 2px;
+}
+
+.heatmap-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.heatmap-cell:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+
 /* ******** */
 /* 手机屏幕 */
 /* ******** */

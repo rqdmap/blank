@@ -4,5 +4,7 @@
 	<!-- 	{{ range (where .Site.RegularPages "Section" "in" site.Params.indexSections).ByDate.Reverse -}} -->
 	<!-- 			{{ .Render "summary" }} -->
 	<!-- 	{{ end }} -->
+
+	{{ partial "heatmap" . }}
 	</main>
 {{ end }}
