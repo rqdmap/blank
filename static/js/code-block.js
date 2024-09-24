@@ -1,39 +1,3 @@
-// var code_block = function(){
-// 	const addCopyButtons = () => {
-// 			const pre = codeBlock.parentNode;
-// 			pre.parentNode.insertBefore(clickBtn, pre.nextSibling);
-//
-// 			const notice = document.createElement("div");
-// 			notice.innerHTML = "代码块已折叠";
-// 			notice.className = "code-notice";
-// 			const foldBtn = document.createElement("button");
-// 			foldBtn.className = "code-toggle";
-// 			foldBtn.type = "button";
-// 			foldBtn.innerHTML = svgFold;
-//
-// 			foldBtn.addEventListener("click", () => {
-// 				if(pre.classList.contains('code-folded')) {
-// 					pre.classList.remove('code-folded');
-// 					pre.firstElementChild.style.display = "block";
-// 					pre.removeChild(notice);
-// 					foldBtn.innerHTML = svgFold;
-// 				}
-// 				else {
-// 					pre.classList.add('code-folded');
-// 					pre.appendChild(notice);
-// 					pre.firstElementChild.style.display = "none";
-// 					foldBtn.innerHTML = svgUnfold;
-// 				}
-// 			})
-// 			pre.parentNode.insertBefore(foldBtn, pre.nextSibling);
-// 			if(pre.parentNode.parentNode.classList.contains("__flag__"))
-// 				foldBtn.click();
-// 		});
-// 	};
-//
-// 	addCopyButtons()
-// }
-
 function copycode(codeBlockId) {
 	const getCodeContent = (codeblock) => {
     const code = codeblock.getElementsByTagName("code")[0]
@@ -63,4 +27,16 @@ function copycode(codeBlockId) {
 }
 
 
+function toggleFold(codeBlockId) {
+  const codeblock = document.getElementById(codeBlockId);
+  const codeContainer = codeblock.lastElementChild;
 
+  if(codeContainer.classList.contains("codeblock-fold")) {
+    codeContainer.classList.remove("codeblock-fold");
+    codeContainer.classList.add("codeblock-unfold");
+  }
+  else if(codeContainer.classList.contains("codeblock-unfold")) {
+    codeContainer.classList.remove("codeblock-unfold");
+    codeContainer.classList.add("codeblock-fold");
+  }
+}

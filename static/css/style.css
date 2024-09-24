@@ -50,7 +50,8 @@ img{
 
 @font-face {
     font-family: "Sarasa";
-    src: url('/fonts/SarasaTermSCNerdFont-Regular.woff2');
+    /* src: url('/fonts/SarasaTermSCNerdFont-Regular.woff2'); */
+    src: url('/fonts/Iosevka-Nerd-Font-Complete.woff2');
 }
 
 * {
@@ -429,9 +430,9 @@ code {
   align-items: center;
 
   border-bottom: 1px solid #ccc;
-  background-color: rgba(0,0,0,0.85);
-  color: #f0f0f0;
-  padding: 5px 0;
+  background-color: #e7e7e7;
+  color: #555;
+  padding: 3px 0;
   font-size: 1.1rem;
   font-weight: bold;
   border-top-left-radius: 4px;
@@ -471,10 +472,9 @@ code {
     position: absolute;
     top: 0;
     right: 0;
-    /* codetype paading(10px) */
+    /* codetype paading(6px) */
     height: calc(10px + var(--codeblock-title-height));
-
-    margin-right: 12px;
+    margin-right: 20px;
 
     display: flex;
     flex-direction: row;
@@ -482,40 +482,66 @@ code {
 }
 
 .codeblock-tool {
-    padding: 5px 7px;
     margin-left: 10px;
+    padding-bottom: 5px;
+    font-size: 1rem;
+    border: 0;
+    background-color: inherit;
+}
+
+.codeblock-tool:hover {
+    font-weight: bold;
 }
 
 .codeblock-tool-hidden {
     display: none;
 }
 
-.codeblock-tool > svg {
-    height: 12;
-    width: 12;
-}
-
 .codeblock-fold {
     max-height: 500px;
     overflow: hidden;
-    transition: max-height 0.5s ease;
 }
 
+.codeblock-unfold::after,
 .codeblock-fold::after {
-    content: "...";
-    text-align: center;
+    content: "";
     position: absolute;
-
     bottom: 0;
     left: 0;
     right: 0;
     height: 50px;
-
-    background: linear-gradient(to bottom, rgba(247, 247, 247, 0) 50%, #000 100%);
 }
 
-.codeblock-fold::after:hover {
-    font-weight: bold;
+.codeblock-fold::after {
+    background: linear-gradient(to bottom, rgba(247, 247, 247, 0), #f7f7f7);
+}
+
+.codeblock-unfold::before,
+.codeblock-fold::before {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    animation: UpDown 2s infinite;
+}
+
+.codeblock-unfold::before {
+    content: "";
+}
+
+
+@keyframes UpDown {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 
@@ -747,8 +773,8 @@ th, td {
   
   line-height: 2;
 
-  margin-top: 20px;
-  padding-bottom: 20px;
+  margin-top: 15px;
+  padding-bottom: 15px;
 }
 
 .footer hr {
@@ -756,7 +782,7 @@ th, td {
   height: 1px;
   background-color: #e5e5e5;
 
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 
