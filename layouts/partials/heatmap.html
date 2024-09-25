@@ -1,14 +1,47 @@
-<div id="heatmap-wrapper">
+<div id="heatmap-by-year">
+  <div id="heatmap-container"> 
+    <div id="months-container"></div>
+    <div id="heatmap-main">
+      <div id="weekdays-container"></div>
+      <div id="heatmap"></div>
+    </div>
+  </div>
   <div id="year-selector"> </div>
-  <div id="heatmap-container"></div>
 </div>
-
 <script defer>
+  
+
+function parseCustomDate(dateString) {
+   const [datePart, timePart] = dateString.split(' ');
+   const [year, month, day] = datePart.split('-');
+   const [time, offset] = timePart.split('+');
+   const [hour, minute, second] = time.split(':');
+   
+   // 注意：JavaScript 中月份是 0-11
+   return new Date(year, month - 1, day, hour, minute, second);
+ }
+
+function loadAllPages() {
+  const pages = [];
+  {{ range .Site.RegularPages }}
+    pages.push({
+      date: parseCustomDate('{{ .Date }}'),
+      title: '{{ .Title }}',
+      url: '{{ .RelPermalink }}',
+      wordCount: {{ .WordCount | default 0 }}
+    });
+  {{ end }}
+  return pages;
+}
+
+const allPages = loadAllPages();
+
 function initYearSelector() {
   const currentYear = new Date().getFullYear();
   const yearSelector = document.getElementById('year-selector');
+  const firstYear = allPages.reduce((year, page) => Math.min(year, page.date.getFullYear()), currentYear);
   
-  for (let year = currentYear; year >= currentYear - 5; year--) {
+  for (let year = currentYear; year >= firstYear; year--) {
     const yearOption = document.createElement('div');
     yearOption.className = 'year-option';
     yearOption.textContent = year;
@@ -16,7 +49,6 @@ function initYearSelector() {
     yearSelector.appendChild(yearOption);
   }
   
-  // 默认选择当前年份
   selectYear(currentYear);
 }
 
@@ -31,63 +63,72 @@ function selectYear(year) {
   createHeatmap(year);
 }
 
+function getChineseDate(date) {
+  return new Intl.DateTimeFormat('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(new Date(date));
+}
 
-<!-- function generateHeatmapData(year) { -->
-<!--   const data = new Array(366); -->
-<!---->
-<!--   const start = new Date(year, 0, 0); -->
-<!--   const oneDay = 1000 * 60 * 60 * 24; -->
-<!--   let date; -->
-<!---->
-<!--   {{ range .Site.RegularPages.GroupByDate "2006" }}  -->
-<!--     if('{{ .Key }}' == year) { -->
-<!--       {{ range .Pages }} -->
-<!--       {{ .LinkTitle }} -->
-<!--         date = new Date('{{ .Date }}'); -->
-<!--         data[Math.floor((date - start) / oneDay)] = {{ .WordCount | default 0 }}; -->
-<!--       {{ end }}  -->
-<!--     } -->
-<!--   {{ end }} -->
-<!---->
-<!--   console.log(data); -->
-<!--   return data; -->
-<!-- } -->
-
-function dayOfYear(date) {
+// 0-based day of year
+function getDayOfYear(date) {
   const start = new Date(date.getFullYear(), 0, 0);
   const diff = date - start;
   const oneDay = 1000 * 60 * 60 * 24;
-  return Math.floor(diff / oneDay);
+  return Math.floor(diff / oneDay) - 1;
 }
 
 function generateHeatmapData(year) {
   const data = [];
   const startDate = new Date(year, 0, 1);
   const endDate = new Date(year, 11, 31);
+  const pages = allPages.filter(page => page.date.getFullYear() === year);
 
   for (let date = new Date(startDate); date <= endDate; date.setDate(date.getDate() + 1)) {
     data.push({
-      date: new Date(date),
-      value: 0
+      date: getChineseDate(new Date(date)),
+      value: 0,
+      title: []
     });
   }
-  {{ range .Site.RegularPages.GroupByDate "2006" }} 
-    if('{{ .Key }}' == year) {
-      {{ range .Pages }}
-        var date = new Date('{{ .Date }}');
-        var value = {{ .WordCount | default 0 }};
-        data[dayOfYear(date)].value += value;
-      {{ end }}
+
+  for (let page of pages) {
+    const date = new Date(page.date);
+    const index = getDayOfYear(date);
+    if (index !== -1) {
+      data[index].value += page.wordCount;
+      data[index].title.push(page.title);
     }
-  {{ end }}
+  }
   return data;
 }
 
 function createHeatmap(year) {
-  const container = document.getElementById('heatmap-container');
-  container.innerHTML = ''; // 清空容器
-  const data = generateHeatmapData(year);
+  const container = document.getElementById('heatmap');
+  const monthsContainer = document.getElementById('months-container');
+  const weekdaysContainer = document.getElementById('weekdays-container');
+  container.innerHTML = '';
+  monthsContainer.innerHTML = '';
+  weekdaysContainer.innerHTML = '';
+
+  const months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+  months.forEach(month => {
+    const monthElement = document.createElement('div');
+    monthElement.className = 'month-label';
+    monthElement.textContent = month;
+    monthsContainer.appendChild(monthElement);
+  });
+
+  const weekdays = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
+  weekdays.forEach(day => {
+    const dayElement = document.createElement('div');
+    dayElement.className = 'weekday-label';
+    dayElement.textContent = day;
+    weekdaysContainer.appendChild(dayElement);
+  });
   
+  const data = generateHeatmapData(year);
   const firstDay = new Date(year, 0, 1).getDay();
 
   // 添加空白单元格以对齐第一天
@@ -101,8 +142,9 @@ function createHeatmap(year) {
     const cell = document.createElement('div');
     cell.className = 'heatmap-cell';
     cell.style.backgroundColor = getColor(day.value);
+    cell.dataset.title = day.title.join('\n');
     cell.dataset.value = day.value;
-    cell.dataset.date = day.date.toISOString().split('T')[0];
+    cell.dataset.date = day.date;
     container.appendChild(cell);
   });
 
@@ -110,7 +152,7 @@ function createHeatmap(year) {
 }
 
 function setupTooltip() {
-  const container = document.getElementById('heatmap-container');
+  const container = document.getElementById('heatmap');
   const tooltip = document.createElement('div');
   tooltip.className = 'tooltip';
   document.body.appendChild(tooltip);
@@ -120,13 +162,16 @@ function setupTooltip() {
   container.addEventListener('mouseout', hideTooltip);
 }
 
-
 function showTooltip(e) {
   if (e.target.classList.contains('heatmap-cell') && e.target.dataset.date) {
     const tooltip = document.querySelector('.tooltip');
     const value = e.target.dataset.value;
-    const date = new Date(e.target.dataset.date);
-    tooltip.textContent = `${date.toDateString()}: ${value} contributions`;
+    const date = e.target.dataset.date;
+    const title = e.target.dataset.title.split('\n');
+    tooltip.innerHTML = `${date}: ${value} 字`;
+    for (let i = 0; i < title.length; i++) if(title[i].length > 0) {
+        tooltip.innerHTML += `<li>${title[i]}</li>`;
+    }
     tooltip.style.opacity = '1';
   }
 }
@@ -154,7 +199,6 @@ function getColor(value) {
   const base = 2000;
   value = parseInt((value + base - 1) / base);
   value = Math.min(value, colors.length - 1);
-  console.log(value)
   return colors[value];
 }
 

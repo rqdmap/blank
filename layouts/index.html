@@ -1,10 +1,6 @@
 {{ define "main" }}
 	<main>
-    主页内容..
-	<!-- 	{{ range (where .Site.RegularPages "Section" "in" site.Params.indexSections).ByDate.Reverse -}} -->
-	<!-- 			{{ .Render "summary" }} -->
-	<!-- 	{{ end }} -->
-
+  {{ .Content }}
 	{{ partial "heatmap" . }}
 	</main>
 {{ end }}

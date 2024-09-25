@@ -789,32 +789,54 @@ th, td {
 /**
  * Heatmap
  */
-#heatmap-wrapper {
+#heatmap-by-year {
   display: flex;
-  align-items: flex-start;
-}
-
-#year-selector {
-  display: flex;
-  flex-direction: column;
-  margin-right: 20px;
-}
-
-.year-option {
-  padding: 5px 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.year-option.active {
-  background-color: #0366d6;
-  color: white;
+  max-width: 100%;
+  justify-content: center;
 }
 
 #heatmap-container {
+  display: flex;
+  overflow-x: auto;
+  flex-direction: column;
+}
+
+#weekdays-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-right: 10px;
+  width: 8px;
+}
+
+.weekday-label {
+  font-size: 8px;
+  color: #767676;
+}
+
+#heatmap-main {
+  display: flex;
+  flex-direction: row;
+}
+
+#months-container {
+  display: flex;
+  gap: 32px;
+  padding-bottom: 2px;
+  padding-left: 30px;
+}
+
+.month-label {
+  text-wrap: nowrap;
+  font-size: 8px;
+  color: #767676;
+}
+
+#heatmap {
   display: grid;
-  grid-template-columns: repeat(53, 1fr);
-  gap: 2px;
+  grid-template-rows: repeat(7, 1fr);
+  gap: 1px;
+  grid-auto-flow: column;
 }
 
 .heatmap-cell {
@@ -840,6 +862,36 @@ th, td {
   opacity: 0;
   transition: opacity 0.2s;
 }
+
+.tooltip li {
+  list-style: none; /* 移除默认标记 */
+}
+
+.tooltip li::before {
+  content: "•";
+  display: inline-block;
+  width: 0.5em; /* 调整这个值来控制间距 */
+  margin-right: 0.5em; /* 可以直接控制右边距 */
+}
+
+#year-selector {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20px;
+}
+
+.year-option {
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+
+.year-option.active {
+  background-color: #0366d6;
+  color: white;
+}
+
 
 
 /* ******** */
