@@ -1,11 +1,8 @@
-{{ $raw_slice := split .Inner "\n" }}
-
 <!-- Remove empty lines -->
+{{ $raw_slice := split ( strings.TrimLeft "\n" .Inner ) "\n" }}
 {{ $slice := slice }}
 {{- range $raw_slice -}}
-	{{ if gt (len .) 0 }}
 	{{ $slice = $slice | append . }}
-	{{ end }}
 {{ end }}
 
 {{ if ge (len $slice) 1 }}
