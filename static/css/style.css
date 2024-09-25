@@ -321,6 +321,10 @@ body {
     position: absolute;
     top: var(--navbar-height);
     width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100% - var(--navbar-height)); /* 避免在特定浏览器中出现问题 */
 }
 
 main {
@@ -329,7 +333,9 @@ main {
     margin-right: var(--content-margin);
     box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
     background-color: white;
-    
+
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 
 h1 {
@@ -685,9 +691,14 @@ th, td {
  * Summary
  */
 
-.summary a{
+.summary a {
     text-decoration: none;
 }
+
+.summary a:hover {
+    text-decoration: underline;
+}
+
 .summary > h1 {
     font-size: 1.5em;
 }
@@ -766,15 +777,18 @@ th, td {
  * Footer
  */
 
+.footer-spacer {
+  flex-grow: 1; /* 这个空白 div 将占据所有剩余空间 */
+}
+
 .footer {
   background-color: #f9f9f9;
   color: #666;
   text-align: center;
-  
   line-height: 2;
-
   margin-top: 15px;
-  padding-bottom: 15px;
+  padding-bottom: 5px;
+  flex-shrink: 0;
 }
 
 .footer hr {
@@ -782,7 +796,7 @@ th, td {
   height: 1px;
   background-color: #e5e5e5;
 
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 
