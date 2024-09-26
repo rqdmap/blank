@@ -857,7 +857,8 @@ th, td {
 }
 
 .heatmap-cell:hover {
-  transform: scale(1.2);
+  /* 变大会导致 heatmap 竖直方向上出现抖动 */
+  transform: scale(1.0);
   cursor: pointer;
 }
 

@@ -19,20 +19,25 @@ function parseCustomDate(dateString) {
    return new Date(year, month - 1, day, hour, minute, second);
  }
 
-function loadAllPages() {
+function loadInfo() {
   const pages = [];
-  {{ range .Site.RegularPages }}
+  {{ $gitinfo := "" }} 
+  {{ with resources.Get "gitlog.json" }} {{ $gitinfo = transform.Unmarshal . }} {{ end }} 
+  {{ range $gitinfo }}
     pages.push({
-      date: parseCustomDate('{{ .Date }}'),
-      title: '{{ .Title }}',
-      url: '{{ .RelPermalink }}',
-      wordCount: {{ .WordCount | default 0 }}
+      date: parseCustomDate('{{ .date }}'),
+      title: '{{ .message }}',
+      change_files: {{ .change_files }},
+      add_lines: {{ .add_lines }},
+      delete_lines: {{ .delete_lines }},
+      char_diff: {{ .char_diff }}
     });
-  {{ end }}
+  {{ end }} 
   return pages;
 }
 
-const allPages = loadAllPages();
+const allPages = loadInfo();
+console.log(allPages)
 
 function initYearSelector() {
   const currentYear = new Date().getFullYear();
@@ -87,7 +92,10 @@ function generateHeatmapData(year) {
     data.push({
       date: getChineseDate(new Date(date)),
       value: 0,
-      title: []
+      title: [],
+      change_files: 0,
+      add_lines: 0,
+      delete_lines: 0,
     });
   }
 
@@ -95,7 +103,10 @@ function generateHeatmapData(year) {
     const date = new Date(page.date);
     const index = getDayOfYear(date);
     if (index !== -1) {
-      data[index].value += page.wordCount;
+      data[index].value += page.char_diff;
+      data[index].change_files += page.change_files;
+      data[index].add_lines += page.add_lines;
+      data[index].delete_lines += page.delete_lines;
       data[index].title.push(page.title);
     }
   }
@@ -142,6 +153,9 @@ function createHeatmap(year) {
     cell.style.backgroundColor = getColor(day.value);
     cell.dataset.title = day.title.join('\n');
     cell.dataset.value = day.value;
+    cell.dataset.change_files = day.change_files;
+    cell.dataset.add_lines = day.add_lines;
+    cell.dataset.delete_lines = day.delete_lines;
     cell.dataset.date = day.date;
     container.appendChild(cell);
   });
@@ -166,6 +180,11 @@ function showTooltip(e) {
     const value = e.target.dataset.value;
     const date = e.target.dataset.date;
     const title = e.target.dataset.title.split('\n');
+
+    const change_files = e.target.dataset.change_files;
+    const add_lines = e.target.dataset.add_lines;
+    const delete_lines = e.target.dataset.delete_lines;
+
     tooltip.innerHTML = `${date}: ${value} 字`;
     for (let i = 0; i < title.length; i++) if(title[i].length > 0) {
         tooltip.innerHTML += `<li>${title[i]}</li>`;
