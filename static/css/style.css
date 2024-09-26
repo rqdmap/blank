@@ -586,23 +586,19 @@ th, td {
 
 }
 
-.gitLog {
-    /*...*/
-}
-
-.gitLine{
+.git-line{
     margin-bottom: 15px;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.gitTime{
+.git-time{
     float: left;
     width: 30%;
 }
 
-.gitMsg{
+.git-msg{
     float: right;
     width: 70%;
 }

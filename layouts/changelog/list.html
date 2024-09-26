@@ -4,6 +4,8 @@
     <div class='list'>
 
     {{ .Scratch.Set "front-matter-enable" "create-time modified-time wordcount vistor"}}
+
+    {{ partial "toc" . }} 
     {{ partial "content" . }}
 
     {{partial "contact" . }}

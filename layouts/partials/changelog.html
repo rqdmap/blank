@@ -1,5 +1,21 @@
+{{ $gitlog_details := "" }} 
+{{ with resources.Get "gitlog-details.json" }} {{ $gitlog_details = transform.Unmarshal . }} {{ end }} 
+{{ $id := .Params.id }}
+{{ $gitlog := slice }}
+{{ range $gitlog_details }}
+  {{ if eq $id .id }}
+  {{ $gitlog = .log }} 
+  {{ end }} 
+{{ end }} 
 <div class='git-container'>
 <span class="git">修改记录:</span>
-<ul class="gitLog"> </ul>
+<ul class="git-log">
+{{ range $gitlog }} 
+<li class="git-line">
+  <span class="git-time">{{ .date }}</span>
+  <span class="git-msg">{{ .message }}</span>
+</li>
+{{ end }} 
+</ul>
 </div>
 

@@ -1,0 +1,12 @@
+{{ define "main" }}
+<main>
+	{{ .Scratch.Set "front-matter-enable" ""}}
+	{{ partial "content" . }}
+
+	<div class='content-list'>
+	{{ range .Pages }}
+		{{ .Render "summary" }}
+	{{ end }}
+	</div>
+</main>
+{{ end }}

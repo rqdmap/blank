@@ -19,8 +19,6 @@
 <div class='codeblock-tool-container'>
 <button class='codeblock-tool copy-button' onclick="copycode('codeblock-{{ .Ordinal }}')">  </button>
 <button class='codeblock-tool check-button codeblock-tool-hidden'> 󰄬 </button>
-<!-- <button class='codeblock-tool fold-button {{- if eq "true" $isFold }} codeblock-tool-hidden {{ end -}}'><svg xmlns="http://www.w3.org/2000/svg" width="{{ $size }}" height="{{ $size }}" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/> </svg></button> -->
-<!-- <button class='codeblock-tool unfold-button {{- if eq "false" $isFold }} codeblock-tool-hidden {{ end -}}'><svg xmlns="http://www.w3.org/2000/svg" width="{{ $size }}" height="{{ $size }}" fill="currentColor" class="bi bi-arrow-bar-down" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"/> </svg></button> -->
 </div>
 <div
 {{- if eq "true" $supportFold }}

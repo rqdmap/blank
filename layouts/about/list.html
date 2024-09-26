@@ -5,6 +5,7 @@
     {{ .Scratch.Set "front-matter-enable" "create-time modified-time wordcount vistor"}}
     {{ partial "content" . }}
 
+    {{ partial "toc" . }}
     {{ partial "contact" . }}
 
     {{ partial "changelog" . }}
