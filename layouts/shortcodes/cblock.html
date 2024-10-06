@@ -1,0 +1,17 @@
+{{ $cblock_type := .Get 0 }}
+<!-- Remove empty lines -->
+{{ $slice := split ( strings.TrimLeft "\n" (strings.TrimLeft " " .Inner) ) "\n" }}
+{{- if ge (len $slice) 1 -}}
+<div class="cblock-{{ $cblock_type }} cblock">
+  <div class="cblock-logo cblock-{{ $cblock_type }}-logo"> </div>
+  <div class="cblock-{{ $cblock_type }}-title cblock-title">
+  {{ safeHTML (index $slice 0) }}
+  </div>
+  {{ if ge (len $slice) 1 }}
+  <div class="cblock-body">
+  {{ range (last (sub (len $slice) 2) $slice) }}
+  {{ safeHTML . }} {{ end }}
+  </div>
+  {{ end }}
+</div>
+{{- end -}}

@@ -357,48 +357,107 @@ blockquote {
 }
 
 
-/* ********** */
-/* 特殊注解块 */
-/* ********** */
-.msg-block {
-    margin: 1.5rem 0;
-    /* padding-bottom: 0.1rem; */
-    border-radius: 3px;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+/**
+ * Colorful notice block
+ */
+.cblock {
+  position: relative;
+  margin: 1.5rem 0;
+  border-radius: 3px;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
 }
 
-.msg-title {
-    padding-left: 1rem;
-    line-height: 2rem;
+.cblock-title {
+  padding-left: 1rem;
+  line-height: 2rem;
 }
 
-.msg-body {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    font-size: 0.9rem;
-    padding-bottom: 0.1rem;
+.cblock-body {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 0.9rem;
+  padding-bottom: 0.1rem;
 }
 
-.info-block {
-    border-left: 0.25em solid rgba(57, 197, 187, 1);
-}
-.info-title {
-    background-color: rgba(57, 197, 187, 0.2);
-}
-
-.warn-block {
-    border-left: 0.25em solid rgba(242, 190, 34, 1);
-}
-.warn-title {
-     background-color: rgba(242, 190, 34, 0.2);
+.cblock-logo::before {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding-right: 1rem;
+  line-height: 2rem;
 }
 
-.error-block {
-    border-left: 0.25em solid rgba(232, 69, 69, 1);
+.cblock-info-logo::before {
+  content: "󰎚";
 }
-.error-title {
-    background-color: rgba(232, 69, 69, 0.2);
+
+.cblock-warn-logo::before {
+  content: "";
 }
+
+.cblock-error-logo::before {
+  content: "";
+}
+
+.cblock-gpt-logo::before {
+  content: "";
+}
+
+/* .cblock-info { */
+/*     border-left: 0.25em solid rgba(57, 197, 187, 1); */
+/* } */
+/**/
+/* .cblock-info-title { */
+/*     background-color: rgba(57, 197, 187, 0.2); */
+/* } */
+/**/
+/* .cblock-warn { */
+/*     border-left: 0.25em solid rgba(242, 190, 34, 1); */
+/* } */
+/* .cblock-warn-title { */
+/*      background-color: rgba(242, 190, 34, 0.2); */
+/* } */
+/**/
+/* .cblock-error { */
+/*     border-left: 0.25em solid rgba(232, 69, 69, 1); */
+/* } */
+/* .cblock-error-title { */
+/*     background-color: rgba(232, 69, 69, 0.2); */
+/* } */
+
+.cblock-info {
+    border-left: 0.25em solid rgba(0, 153, 68, 1); /* 深绿色边框 */
+}
+
+.cblock-info-title {
+    background-color: rgba(0, 153, 68, 0.2); /* 淡绿色背景 */
+}
+
+.cblock-warn {
+    border-left: 0.25em solid rgba(255, 165, 0, 1); /* 深橙色边框 */
+}
+
+.cblock-warn-title {
+    background-color: rgba(255, 165, 0, 0.2); /* 淡橙色背景 */
+}
+
+
+.cblock-error {
+    border-left: 0.25em solid rgba(255, 0, 0, 1); /* 深红色边框 */
+}
+
+.cblock-error-title {
+    background-color: rgba(255, 0, 0, 0.2); /* 淡红色背景 */
+}
+
+.cblock-gpt {
+    border-left: 0.25em solid rgba(0, 123, 255, 1); /* 深蓝色边框 */
+}
+
+.cblock-gpt-title {
+    background-color: rgba(0, 123, 255, 0.2); /* 淡蓝色背景 */
+}
+
 
 /**
  * Default codeblock(inline)
