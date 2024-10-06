@@ -205,7 +205,15 @@ function hideTooltip() {
 }
 
 function getColor(value) {
-  const colors = [
+  const negativeColors = [
+    '#ffcccc',
+    '#ff9999',
+    '#ff6666',
+    '#ff3333',
+    '#ff0000'
+  ];
+
+  const positiveColors = [
     '#ebedf0',
     '#9be9a8',
     '#40c463',
@@ -214,9 +222,15 @@ function getColor(value) {
   ];
 
   const base = 2000;
-  value = parseInt((value + base - 1) / base);
-  value = Math.min(value, colors.length - 1);
-  return colors[value];
+  if (value < 0) {
+    value = Math.abs(value);
+    const index = Math.min(Math.floor(value / base), negativeColors.length - 1);
+    return negativeColors[index];
+  } else {
+    value = Math.floor((value + base - 1) / base);
+    const index = Math.min(value, positiveColors.length - 1);
+    return positiveColors[index];
+  }
 }
 
 initYearSelector()
