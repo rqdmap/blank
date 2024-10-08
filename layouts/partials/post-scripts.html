@@ -1,14 +1,9 @@
-{{- $js := resources.Get "js/startup.js" -}}
-{{- $js = $js | js.Build (dict "minify" true) -}}
-<script src="{{ $js.RelPermalink }}"></script>
-
 {{- $js := resources.Get "js/hit.js" -}}
 {{- $js = $js | js.Build (dict "minify" true) -}}
 <script src="{{ $js.RelPermalink }}"></script>
 
-<script src="{{"/js/sort.js" | relURL}}"></script>
+<script defer src="{{"/js/sort.js" | relURL}}"></script>
 
-<!-- <script src="{{"/js/search.js" | relURL}}"></script> -->
 
 {{- $pages := slice -}}
 {{- range .Site.RegularPages -}} {{- if eq .Draft false -}}

@@ -1,3 +1,12 @@
+function sort_by_url() {
+  var params = new URLSearchParams(window.location.search);
+  var sort_param = params.get('sort');
+  if (sort_param != null) {
+    let content_list = document.querySelector("main").querySelector(".content-list");
+    sort_items(content_list, sort_param);
+  }
+}
+
 function toggle_sort_items() {
   var sortItems = document.querySelector('.sort-items');
   if (sortItems.style.display == 'block') {
@@ -6,6 +15,7 @@ function toggle_sort_items() {
     sortItems.style.display = 'block';
   }
 }
+
 function close_sort_items() {
   var sortItems = document.querySelector('.sort-items');
   sortItems.style.display = 'none';
@@ -18,10 +28,11 @@ function set_sort_url(key_idx) {
   window.location.href = newUrl;
 }
 
-var sort_items = function(key_idx) {
+function sort_items(content_list, key_idx) {
+  // keys 为收集的 front-matter CSS 类名
   const keys = ["front-matter-create-time", "front-matter-lastmod-time", "front-matter-wordcount"];
-  const check_home = function () {
-    var elem = document.querySelector("main") 
+
+  const is_summary_list = function (elem) {
     for(var i = 0; i < elem.children.length; i++) {
       var child = elem.children[i];
       if (child.nodeType === 1 && child.tagName.toLowerCase() === 'div') {
@@ -38,18 +49,20 @@ var sort_items = function(key_idx) {
     if(i != key_idx) { cmp_order.push(i); }
   }
 
-  let par = document.querySelector("main");
-  if(!check_home()) { par = par.querySelector(".list"); }
+  if(!is_summary_list(content_list)) {
+    return;
+  }
 
   var start = -1, end = -1;
   var range = [];
-  for(var i = 0; i < par.children.length; i++) {
-    if(par.children[i].classList.contains("summary")) {
+  for(var i = 0; i < content_list.children.length; i++) {
+    if(content_list.children[i].classList.contains("summary")) {
       if(start == -1) start = i;
       end = i;
-      range.push(par.children[i]);
+      range.push(content_list.children[i]);
     }
   }
+
   range.sort(function(a, b) {
     for(var i = 0; i < cmp_order.length; i++) {
       var key = keys[cmp_order[i]];
@@ -73,8 +86,10 @@ var sort_items = function(key_idx) {
   range.reverse();
 
   for(var i = start; i <= end; i++) {
-    par.insertBefore(range[i - start], par.children[i]);
+    content_list.insertBefore(range[i - start], content_list.children[i]);
   }
 
   close_sort_items();
 }
+
+sort_by_url()
