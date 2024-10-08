@@ -222,15 +222,20 @@ function getColor(value) {
   ];
 
   const base = 2000;
-  if (value < 0) {
-    value = Math.abs(value);
-    const index = Math.min(Math.floor(value / base), negativeColors.length - 1);
-    return negativeColors[index];
-  } else {
-    value = Math.floor((value + base - 1) / base);
-    const index = Math.min(value, positiveColors.length - 1);
-    return positiveColors[index];
-  }
+
+  // if (value < 0) {
+  //   value = Math.abs(value);
+  //   const index = Math.min(Math.floor(value / base), negativeColors.length - 1);
+  //   return negativeColors[index];
+  // } else {
+  //   value = Math.floor((value + base - 1) / base);
+  //   const index = Math.min(value, positiveColors.length - 1);
+  //   return positiveColors[index];
+  // }
+
+  value = Math.floor((Math.abs(value) + base - 1) / base);
+  const index = Math.min(value, positiveColors.length - 1);
+  return positiveColors[index];
 }
 
 initYearSelector()
