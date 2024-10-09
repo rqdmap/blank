@@ -1,11 +1,18 @@
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 {{- $pages := slice -}}
-{{- range .Site.RegularPages -}} {{- if eq .Draft false -}}
-{{- $pages = $pages | append . -}}
-{{- end -}} {{- end -}}
-{{ range .Site.Sections }} {{- if not (in site.Params.searchBlock .Type) }}
-{{- $pages = $pages | append . -}}
-{{ end }} {{ end }}
+
+{{- range .Site.RegularPages -}}
+    {{- if eq .Draft false -}} {{- if not (in site.Params.searchBlock .Type) -}}
+    {{- $pages = $pages | append . -}}
+    {{- end -}} {{- end -}}
+{{- end -}}
+
+{{- range .Site.Sections -}}
+    {{- if not (in site.Params.searchBlock .Type) }}
+    {{- $pages = $pages | append . -}}
+    {{ end }}
+{{- end -}}
+
 <search>
 	{{ range $pages }}
 	<entry>
