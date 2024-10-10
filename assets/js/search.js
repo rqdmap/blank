@@ -35,18 +35,17 @@ function toggle_search_window() {
 	}
 }
 
+function debounce(func, wait){
+  return function(...args) {
+    if (search_timer) { clearTimeout(search_timer); }
+    search_timer = setTimeout(() => {
+      func.apply(this, args);
+    }, wait);
+  }
+}
 
 var search_timer;
 function search_input() {
-	function debounce(func, wait){
-		return function(...args) {
-			if (search_timer) { clearTimeout(search_timer); }
-			search_timer = setTimeout(() => {
-				func.apply(this, args);
-			}, wait);
-		}
-	}
-
 	function dim_tag(content) {
 		return '<span class="search-dim">' + content + '</span>';
 	}
@@ -333,6 +332,9 @@ function xmlToJson(xmlString) {
   parseNode(xmlString.documentElement, result);
   return result.search[0].entry;
 }
+
+// Silent load the search index
+loadXMLFile("/search/index.xml", () => {});
 
 var btnElem = document.querySelector('.search-btn');
 if(btnElem) btnElem.addEventListener('click', toggle_search_window);
