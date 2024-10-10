@@ -1,0 +1,52 @@
+{{- $js := resources.Get "js/katex/katex.min.js" | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}"></script>
+
+{{- $js := resources.Get "js/katex/auto-render.min.js" | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}"
+	onload='renderMathInElement(document.body, {delimiters: [
+		{left: "$$", right: "$$", display: true},
+		{left: "$", right: "$", display: false}
+]});'>
+</script>
+
+{{- $js := resources.Get "js/utils.js" | js.Build (dict "minify" true) | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}"></script>
+
+{{- $js := resources.Get "js/browser.min.js" | js.Build (dict "minify" true) | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}"></script>
+
+{{- $js := resources.Get "js/hit.js" | js.Build (dict "minify" true) | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}"></script>
+
+{{- $js := resources.Get "js/sort.js" | js.Build (dict "minify" true) | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}"></script>
+
+{{- $pages := slice -}}
+{{- range .Site.RegularPages -}} {{- if eq .Draft false -}}
+{{- $pages = $pages | append . -}}
+{{- end -}} {{- end -}}
+{{ range .Site.Sections }} {{- if not (in site.Params.searchBlock .Type) }}
+{{- $pages = $pages | append . -}}
+{{ end }} {{ end }}
+{{- $total_chars := 0 }}
+{{ range $pages }} 
+{{ $total_chars = math.Add $total_chars (int .WordCount) }} 
+{{ end }} 
+{{- $opts := dict
+	"params" (dict "total_chars" $total_chars)
+	"minify" true
+-}}
+{{- $js := resources.Get "js/search.js" | js.Build $opts | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}"></script>
+
+{{- $js := resources.Get "js/code-block.js" | js.Build (dict "minify" true) | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}"></script>
+
+{{- $js := resources.Get "js/toc-inspect.js" | js.Build $opts | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}"></script>
+
+{{- $js := resources.Get "js/crypto-js/crypto-js.js" | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}"></script>
+
+{{- $js := resources.Get "js/decrypt.js" | js.Build (dict "minify" true) | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}"></script>

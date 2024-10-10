@@ -20,7 +20,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{{ "css/katex.min.css" | relURL }}">
 
-	{{ partial "pre-scripts.html" . }}
+	{{ partial "head-scripts.html" . }}
 </head>
 
 <body>
@@ -29,7 +29,5 @@
 		{{ block "main" . }}{{ end }}
     {{ partial "footer" . }}
 	</div>
-
-	{{ partial "post-scripts.html" . }}
 </body>
 </html>

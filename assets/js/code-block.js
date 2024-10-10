@@ -1,4 +1,4 @@
-function copycode(codeBlockId) {
+function copyCode(codeBlockId) {
 	const getCodeContent = (codeblock) => {
     const code = codeblock.getElementsByTagName("code")[0]
 		var res = ""
@@ -40,3 +40,6 @@ function toggleFold(codeBlockId) {
     codeContainer.classList.add("codeblock-fold");
   }
 }
+
+window.copyCode = copyCode;
+window.toggleFold = toggleFold;

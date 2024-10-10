@@ -17,7 +17,9 @@ let tagArray = new Array();
 	{{ end }}
 {{ end }}
 </script>
-<script src="{{"/js/wordcloud2.js" | relURL}}"></script>
+
+{{- $js := resources.Get "js/wordcloud2.js" | js.Build (dict "minify" true) | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}"></script>
 
 <div id="tag-wrapper"></div>
 <br>
