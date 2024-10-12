@@ -43,15 +43,9 @@ img{
   filter: none;
 }
 
-/* @font-face { */
-/*   font-family: "Iosevka Nerd Font"; */
-/*   src: url('/fonts/iosevka-nerd-font.min.ttf123'); */
-/* } */
-
 @font-face {
   font-family: "Sarasa";
-  /* src: url('/fonts/SarasaTermSCNerdFont-Regular.woff2'); */
-  src: url('/fonts/Iosevka-Nerd-Font-Complete.woff2');
+  src: url('/fonts/SarasaMinimized.woff2');
 }
 
 * {
@@ -635,33 +629,40 @@ th, td {
 
 /* git 修改记录 */
 .git {
-  font-size: 1.5em;
-
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  font-size: 1.5rem;
   font-weight: bold;
-  /* background-color: #A4FFC0; */
 
 }
 
-.git-line{
-  margin-bottom: 15px;
+.git-log {
+  padding: 0;
+}
+
+.git-line {
   display: flex;
-  flex-direction: row;
   align-items: center;
+  padding: 10px 15px;
+  margin: 10px 0;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.15s ease;
 }
 
-.git-time{
-  float: left;
-  width: 30%;
+.git-line:hover {
+  background-color: #e6f7ff;
 }
 
-.git-msg{
-  float: right;
-  width: 70%;
+.git-time {
+  color: #6c757d;
+  margin-right: 10px;
 }
+
+.git-msg {
+  text-align: left;
+  flex: 1;
+}
+
 
 /**
  * Table of contents
@@ -841,6 +842,7 @@ th, td {
   background-color: #f9f9f9;
   color: #666;
   text-align: center;
+  font-size: 80%;
   line-height: 2;
   margin-top: 15px;
   padding-bottom: 5px;
@@ -853,6 +855,10 @@ th, td {
   background-color: #e5e5e5;
 
   margin-bottom: 5px;
+}
+
+.hidden {
+  display: none;
 }
 
 
@@ -969,143 +975,60 @@ th, td {
 /* 手机屏幕 */
 /* ******** */
 
-/* @media screen and (max-width: 900px) { */
-/*   .sidebar{ */
-/*     position: absolute; */
-/*     top: 0; */
-/*     height: 5%; */
-/*     width: 100%; */
-/*     display: flex; */
-/*     justify-content: center;  */
-/*     align-items: center;  */
-/*   } */
-/*    */
-/*   .sidebar-title { */
-/*     text-align: center; */
-/*     font-size: 2.5rem; */
-/*     padding: 0; */
-/*     margin-top: 30px; */
-/*     z-index: 998; */
-/*   } */
-/*    */
-/*   .sidebar-items, */
-/*   .sidebar-footer { */
-/*     display: none */
-/*   } */
-/*   .dropdown-items { */
-/*     display: block; */
-/*   } */
-/**/
-/*   .dropdown-btn{ */
-/*     position: absolute; */
-/*     top: 20px; */
-/*     left: 25px; */
-/**/
-/*     padding: 10px; */
-/*     background-color: #f2f2f2; */
-/*     border-radius: 8px; */
-/*     border: 0px; */
-/*     z-index: 999999; */
-/*   } */
-/**/
-/*   .dropdown-list { */
-/*     position: fixed; */
-/*     top: 50%; */
-/*     left: 50%; */
-/*     transform: translate(-50%, -50%); */
-/*     width: 75%; /* 列表宽度 */ */
-/*     margin: 0; */
-/*     padding: 0; */
-/*     background-color: #f1f1f1; */
-/**/
-/*     display: none; */
-/*     flex-direction: column; */
-/*     text-align: center; */
-/*     border: 1px solid black; */
-/*     border-radius: 10px; */
-/*     z-index: 999999; */
-/*   } */
-/**/
-/*   /* .dropdown-items:hover .dropdown-list { */ */
-/*   /*   display: flex; */ */
-/*   /* } */ */
-/**/
-/*   .dropdown-item div{ */
-/*     text-decoration: none; */
-/*     font-size: 1.2rem; */
-/*     line-height: 3; */
-/*   } */
-/**/
-/*   .dropdown-item div:hover{ */
-/*     background-color: #C1C1C1; */
-/*   } */
-/**/
-/*   .content-container { */
-/*     margin-top: 75px; */
-/*     margin-left: 0%; */
-/*     margin-right: 0%; */
-/*     box-shadow: 0px 0px 0px; */
-/*     z-index: 10; */
-/*   } */
-/**/
-/*   .rightbar-container { */
-/*     position: absolute; */
-/*     display: flex; */
-/*     width: 100%; */
-/*     top: 0; */
-/*   } */
-/**/
-/*   .rightbar-container .toc { */
-/*     display: none; */
-/*   } */
-/**/
-/*   .rightbar-container .utils{ */
-/*     right: 0; */
-/*   } */
-/**/
-/*   .rightbar-container .sort-btn { */
-/*     position: absolute; */
-/*     top: 20px; */
-/*     left: auto; */
-/*     right: 25px; */
-/*     border-radius: 8px; */
-/*     border: 0px; */
-/*     background-color: #f2f2f2; */
-/*   } */
-/**/
-/*   .rightbar-container .sort-items { */
-/*     position: absolute; */
-/*     float: right; */
-/*     top: 70px; */
-/*     right: 25px; */
-/*     z-index: 20; */
-/*   } */
-/**/
-/*   .rightbar-container .sort-btn svg, */
-/*   .rightbar-container .search-btn svg { */
-/*     height: 16px; */
-/*     width: 16px; */
-/*   } */
-/**/
-/*   .rightbar-container .search-btn { */
-/*     position: absolute; */
-/*     top: 20px; */
-/*     left: auto; */
-/*     right: 80px; */
-/*     border-radius: 8px; */
-/*     border: 0px; */
-/*     background-color: #f2f2f2; */
-/*   } */
-/**/
-/*   .rightbar-container .search-window { */
-/*     height: 60%; */
-/*     width: 80%; */
-/*     font-size: 0.8rem; */
-/*   } */
-/**/
-/*   .rightbar-container .search-time-count { */
-/*     float: none; */
-/*   } */
-/* } */
+@media screen and (max-width: 900px) {
+  .navbar {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .navbar-title {
+  font-size: 1.5rem;
+  }
+
+  .contact-favicon,
+  .toc-container {
+    display: none;
+  }
+
+  .navbar-categories {
+    font-size: 1rem;
+  }
+
+  .sort-btn,
+  .search-btn {
+    padding: 0px;
+  }
+
+  .sort-items {
+    min-width: 100px;
+  }
+
+  .search-window {
+    width: 80%;
+  }
+
+  main {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .footer {
+    font-size: 0.8rem;
+  }
+
+  .contact-info {
+    font-size: 0.85rem;
+  }
+
+
+  .git-time {
+    font-size: 0.85rem;
+  }
+
+  .git-msg {
+    font-size: 0.85rem;
+  }
+}
 
 
