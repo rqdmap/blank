@@ -1,15 +1,14 @@
 {{ define "main" }}
   <!-- Special Page, use Single Page style -->
-    <main>
+	<main>
     <div class='list'>
 
     {{ .Scratch.Set "front-matter-enable" "create-time modified-time wordcount vistor"}}
-
-    {{ partial "toc" . }} 
     {{ partial "content" . }}
 
-    {{partial "contact" . }}
-    {{ partial "changelog" . }}
+    {{ partial "toc" . }}
+    {{ partial "contact" . }}
+    {{ partial "gitlog" . }}
     </div>
-    </main>
+	</main>
 {{ end }}

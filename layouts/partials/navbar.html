@@ -4,7 +4,7 @@
 	</div>
 
 	<div class="navbar-categories">
-		{{ range .Site.Params.socials }}
+		{{ range .Site.Params.sections }}
 		<div class="navbar-categories-item">
       {{ if .external }}
       <a class="external-link" href="{{ .link }}"> {{- .zh_name -}} </a>

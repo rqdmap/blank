@@ -1,6 +1,6 @@
 :root {
   --navbar-height: 5%;
-  --navbar-padding: 20%;
+  --navbar-padding: 25%;
   --font-size: 16px;
   --content-margin: 25%;
   --line-height: 1.5;
@@ -65,12 +65,62 @@ body {
   line-height: var(--line-height);
 }
 
+
+/**
+ * Homepage
+ */
+
+.homepage-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 500px;
+
+  width: 100%;
+  max-width: 800px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage-favicon {
+  width: 128px;
+  height: 128px;
+  border-radius:50%;
+}
+
+.homepage-title{
+  font-size: 2rem;
+  align-self: center;
+  margin: 15px 0;
+}
+
+.homepage-socials {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.homepage-social-item {
+  font-size: 1.25rem;
+  margin: 0 20px;
+  text-decoration: none;
+}
+
+.homepage-social-item:hover {
+  text-decoration: none;
+}
+
 /**
  * Navbar
  */
 .navbar {
   position: fixed;
   height: var(--navbar-height);
+  min-height: 50px;
   width: calc(100% - 2 * var(--navbar-padding));
   padding-left: var(--navbar-padding);
   padding-right: var(--navbar-padding);
@@ -78,7 +128,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 
   z-index: 100;
   background-color: white;
@@ -93,7 +143,7 @@ body {
   display: flex;
   justify-content: right;
   flex-direction: row;
-  column-gap: 1vw;
+  column-gap: 1.5vw;
 
   font-size: 1.2rem;
 }
@@ -623,44 +673,55 @@ th, td {
   padding: 5px 10px;
 }
 
+/* git 修改记录 */
 .git-container {
-  margin-top: 25px;
+  margin: 20px auto;
+  background-color: #fff;
+  border: 1px solid #e1e1e8;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  padding: 20px;
 }
 
-/* git 修改记录 */
-.git {
+.git-title {
   font-size: 1.5rem;
   font-weight: bold;
-
 }
 
 .git-log {
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .git-line {
-  display: flex;
-  align-items: center;
-  padding: 10px 15px;
-  margin: 10px 0;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.15s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e1e1e8;
 }
 
-.git-line:hover {
-  background-color: #e6f7ff;
+.git-line:last-child {
+    border-bottom: none;
+}
+
+.git-time,
+.git-msg {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .git-time {
-  color: #6c757d;
-  margin-right: 10px;
+    color: #555;
+    margin-right: 20px;
+    flex: none;
 }
 
 .git-msg {
-  text-align: left;
-  flex: 1;
+    color: #000;
+    font-size: 16px;
 }
 
 
@@ -867,8 +928,9 @@ th, td {
  */
 #heatmap-by-year {
   display: flex;
-  max-width: 100%;
+  max-width: 90%;
   justify-content: center;
+  margin-top: 25px;
 }
 
 #heatmap-container {
@@ -980,19 +1042,18 @@ th, td {
     width: 90%;
     padding-left: 5%;
     padding-right: 5%;
+    justify-content: space-evenly;
   }
 
-  .navbar-title {
-  font-size: 1.5rem;
-  }
 
+  .navbar-title,
   .contact-favicon,
   .toc-container {
     display: none;
   }
 
   .navbar-categories {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .sort-btn,
@@ -1021,13 +1082,15 @@ th, td {
     font-size: 0.85rem;
   }
 
-
-  .git-time {
+  .git-time,
+  .git-msg {
     font-size: 0.85rem;
   }
 
-  .git-msg {
-    font-size: 0.85rem;
+  .footer div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 

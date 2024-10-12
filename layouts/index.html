@@ -1,7 +1,14 @@
 {{ define "main" }}
-<main>
-{{ .Content }}
+<div class='homepage-container'>
+  <img src="/favicon.ico" class='homepage-favicon'>
+  <div class='homepage-title'> rqdmap's Blog </div>
 
-{{ partial "heatmap" . }}
-</main>
+  <div class='homepage-socials'> 
+    {{ range .Site.Params.socials }}
+    <a class='homepage-social-item' href="{{ .link }}"> {{- .emoji -}} </a>
+    {{ end }}
+  </div>
+
+  {{ partial "heatmap" . }}
+</div>
 {{ end }}

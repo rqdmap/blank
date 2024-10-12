@@ -7,15 +7,16 @@
   {{ $gitlog = .log }} 
   {{ end }} 
 {{ end }} 
+
 <div class='git-container'>
-<span class="git">修改记录:</span>
-<ul class="git-log">
-{{ range $gitlog }} 
-<li class="git-line">
-  <span class="git-time">{{ .date }}</span>
-  <span class="git-msg">{{ .message }}</span>
-</li>
-{{ end }} 
-</ul>
+  <span class='git-title'>修改日志</span>
+  <ul class="git-log">
+    {{ range $gitlog }} 
+    <li class="git-line">
+      <span class="git-time">{{ .date }}</span>
+      <span class="git-msg">{{ .message }}</span>
+    </li>
+    {{ end }} 
+  </ul>
 </div>
 
