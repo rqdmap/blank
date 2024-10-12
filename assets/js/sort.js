@@ -93,3 +93,6 @@ function sort_items(content_list, key_idx) {
 }
 
 sort_by_url()
+window.toggle_sort_items = toggle_sort_items
+window.close_sort_items = close_sort_items
+window.set_sort_url = set_sort_url

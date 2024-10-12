@@ -16,8 +16,9 @@
 	</div>
 
 
+  {{ $show_sort := slice "term" "section" }}
   <div class="navbar-tools">
-    <button class="sort-btn" onmousedown="toggle_sort_items()" onblur="close_sort_items()">
+  <button class="sort-btn {{ if not (in $show_sort .Kind) }} hidden {{ end }}" onmousedown="toggle_sort_items()" onblur="close_sort_items()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="25" width="25"> <g> <path d="M20 4v12h3l-4 5-4-5h3V4h2zm-8 14v2H3v-2h9zm2-7v2H3v-2h11zm0-7v2H3V4h11z"></path> </g> </svg>
     </button>
     <div class='sort-items'>
