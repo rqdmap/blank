@@ -31,13 +31,25 @@ function toggleFold(codeBlockId) {
   const codeblock = document.getElementById(codeBlockId);
   const codeContainer = codeblock.lastElementChild;
 
-  if(codeContainer.classList.contains("codeblock-fold")) {
-    codeContainer.classList.remove("codeblock-fold");
-    codeContainer.classList.add("codeblock-unfold");
-  }
-  else if(codeContainer.classList.contains("codeblock-unfold")) {
-    codeContainer.classList.remove("codeblock-unfold");
-    codeContainer.classList.add("codeblock-fold");
+  const rect = codeContainer.getBoundingClientRect();
+  const beforeRect = {
+      left: rect.left,
+      right: rect.right,
+      top: rect.bottom - 50,
+      bottom: rect.bottom
+  };
+
+  // 仅点击伪元素时触发
+  if (event.clientX >= beforeRect.left && event.clientX <= beforeRect.right &&
+      event.clientY >= beforeRect.top && event.clientY <= beforeRect.bottom) {
+    if(codeContainer.classList.contains("codeblock-fold")) {
+      codeContainer.classList.remove("codeblock-fold");
+      codeContainer.classList.add("codeblock-unfold");
+    }
+    else if(codeContainer.classList.contains("codeblock-unfold")) {
+      codeContainer.classList.remove("codeblock-unfold");
+      codeContainer.classList.add("codeblock-fold");
+    }
   }
 }
 
