@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode | default "zh-cn" }}">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="id" content="{{ .Params.id }}" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="id" content="{{ .Params.id }}" />
 
-	<title>{{ with .Title }} {{ . }}  - {{ end }} {{ .Site.Title }}</title>
-	{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
-	{{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+  <title>{{ with .Title }} {{ . }}  - {{ end }} {{ .Site.Title }}</title>
+  {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
+  {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
 
-	{{ with .OutputFormats.Get "RSS" -}}
-		{{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
-	{{- end }}
+  {{ with .OutputFormats.Get "RSS" -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
+  {{- end }}
 
-	<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="{{ "css/katex.min.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "css/katex.min.css" | relURL }}">
 
-	{{ partial "head-scripts.html" . }}
+  {{ partial "head-scripts.html" . }}
 </head>
 
 <body>
-	{{ partial "navbar" . }}
-	<div class='content-container'>
-		{{ block "main" . }}{{ end }}
+  {{ partial "navbar" . }}
+  <div class='content-container'>
+    {{ block "main" . }}{{ end }}
     {{ partial "footer" . }}
-	</div>
+  </div>
 </body>
 </html>
