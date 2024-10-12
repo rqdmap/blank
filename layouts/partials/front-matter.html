@@ -39,8 +39,9 @@
   {{ end }}
 
   {{ if in $enable "vistor" }}
-    <span class='front-item'> 󰩟 <span id='page-vistor'>0</span>人  </span>
-
-    <span class='front-item'> 󰷊  <span id='page-view'>0</span> 次 </span>
+  <span id='page-statistics' class='hidden'>
+    <span class='front-item'> 󰩟 <span id='page-uv'>0</span>人 </span>
+    <span class='front-item'> 󰷊  <span id='page-pv'>0</span> 次 </span>l
+  </span>
   {{ end }}
 </div>
